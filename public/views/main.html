@@ -1,0 +1,70 @@
+<div class="container-fluid">
+	<!-- DeleteInfo popup -->
+	<div ng-include="'../views/deleteInfo.html'"></div>
+	<!-- AddInfo popup -->
+	<div ng-include="'../views/addInfo.html'"></div>
+	<!-- Show AddInfo popup -->
+	<div class="offset-2 offset-sm-7 offset-md-8 offset-lg-9">
+		<div class="row">
+			<a class="col-5 col-sm-7 menu" data-toggle="modal" data-target="#showAddInfo">Lägg till</a>
+			<a href="/#!/om" class="col-4 col-sm-4 menu">Om</a>
+		</div>
+	</div>
+	<h1 class="offset-1 col-10">poddsök.nu</h1>
+	<div class="row pod-show-hide" ng-show="!podShow">
+		<div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+			<input ng-model="searchpodd.name" placeholder="Podcast..." autofocus>
+		</div>
+
+		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+			<div ng-repeat="pod in allPods | filter:searchpodd | filter:query as res">
+				<div class="pod click row" ng-click="showPod(); getEpisodes(pod.title)">
+					<div class="col-3 col-md-2">
+						<img ng-src="/resources/images/{{pod.title}}.png">
+					</div>
+					<div class="col-9 col-md-10">
+						<h2 class="pod-name">{{pod.name}}</h2>
+					</div>
+				</div>
+			</div>
+			<div class="about" ng-show="!res.length">Podcasten finns ej... Du kan önska den <u><a href="mailto:contact@poddsok.nu?subject=Önska podcast" >här</a></u>!</div>
+		</div>
+	</div>
+
+	<div class="row pod-show-hide" ng-show="podShow">
+		<div class="col-2 col-sm-2 offset-md-2 col-md-1 col-lg-1 offset-lg-3">
+			<i class="fas fa-arrow-alt-circle-left click back" ng-click="showPod()"></i>
+		</div>
+		<div class="col-8 col-sm-6 col-md-4 col-lg-5">
+			<input class="podd-search" ng-model="searchep" placeholder="Mening eller ord...">
+		</div>
+		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" id="eps" ng-show="!loading">
+			<div ng-repeat="episode in episodes | orderBy:'nr'| filter:query as resEp">
+				<div class="pod row" ng-show="filtered.length>0">
+					<div class="col-3 col-md-2">
+						<img ng-src="/resources/images/{{pod}}.png">
+					</div>
+					<div class="col-9 col-md-10">
+						<div ng-if="episode.minutes.length>1 && !searchep" ng-click="showMinText(episode)" ng-show="!searchep">
+							<i ng-show="!episode.showMin" class="fa fa-plus-circle eptext-show delete-icon"></i>
+							<i ng-show="episode.showMin" class="fa fa-minus-circle eptext-show delete-icon"></i>
+						</div>
+						<h2 class="pod-name" ng-class="{'pod-title-up':searchep}">{{episode.nr}}. {{episode.name}}</h2>
+						<div ng-show="searchep || episode.showMin" ng-repeat="minute in filtered = (episode.minutes | filter:searchep | orderBy:'nr')" ng-if="minute.text != ''" class="pod-show-hide">
+							<p class='inline'>{{minute.nr}} minuter: "<span class='inline' ng-bind-html="boldSearch(minute.text,searchep)"></span>"</p>
+							<i class="delete-icon fas fa-exclamation-circle" data-toggle="modal" data-target="#showDeleteInfo" ng-click="setDeleteInfo(minute,episode)"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{resEp}}
+			<div class="about" style="text-align: center;" ng-show="resEp.length<1">
+					Texten finns inte... Vet du var det nämns? Lägg till <u><a data-toggle="modal" data-target="#showAddInfo">här</a></u>!
+			</div>
+			
+		</div>
+		<div class="col-12 col-sm-6 offset-sm-3" ng-show="loading">
+			<img class="offset-5" src="/resources/gifs/loading.gif">
+		</div>
+	</div>
+</div>

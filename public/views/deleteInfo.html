@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="modal fade" id="showDeleteInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h2 class="modal-title">Felaktig text</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="sent=false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" ng-show="!sent">
+        <p>Stämmer det inte att <i>"{{deleteInfo.min.text}}"</i> nämns på minut {{deleteInfo.min.nr}} i avsnitt {{deleteInfo.ep.nr}}.{{deleteInfo.ep.name}}?</p>
+      </div>
+      <div class="modal-footer" ng-show="!sent">
+        <button type="button" class="btn btn-primary btn-send" ng-click="sendDeleteInfo(deleteInfo)">Stämmer ej</button>
+      </div>
+      <div ng-show="sent">
+        <img class="offset-5" src="/resources/gifs/loading2.gif" ng-show="loadingDel">
+        <h2 style="padding: 5%" class="center col-12" ng-show="!loadingDel">Tack för din feedback!</h2>
+      </div>
+    </div>
+  </div>
+</div>
