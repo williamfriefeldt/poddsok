@@ -35,15 +35,20 @@
 
 	<!-- If enter podcast: display episodes -->
 	<div class="row pod-show-hide" ng-show="podShow">
-		<div class="col-2 col-sm-2 offset-md-2 col-md-1 col-lg-1 offset-lg-3">
+		<div class="col-2 offset-sm-1 col-sm-2 offset-md-2 col-md-1 offset-lg-3 col-lg-1">
 			<i class="fas fa-arrow-alt-circle-left click back" ng-click="showPod()"></i>
 		</div>
-		<div class="col-8 col-sm-6 col-md-4 col-lg-5">
-			<input class="podd-search" ng-model="searchep" placeholder="Mening eller ord...">
+		<div class="col-8 col-sm-6 col-md-6 col-lg-4">
+			<input ng-model="searchep" placeholder="Mening eller ord...">
 		</div>
+		<div class="col-2 col-lg-1">
+			<i ng-show="sortEps" class="fas fa-arrow-alt-circle-down click" style="font-size:48.5px; margin-left: -10%" ng-click="changeSort()"></i>
+			<i ng-show="!sortEps" class="fas fa-arrow-alt-circle-up click" style="font-size:48.5px; margin-left: -10%" ng-click="changeSort()"></i>
+		</div>
+
 		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" id="eps" ng-show="!loading">
 			<!-- Loop through episodes -->
-			<div ng-repeat="episode in episodes | filter: searchep | orderBy:'nr'| filter:query as resEp">
+			<div ng-repeat="episode in episodes | filter: searchep | orderBy: sortEps ? 'nr' : '-nr' | filter:query as resEp">
 				<div class="pod row" ng-show="filtered.length>0">
 					<div class="col-3 col-md-2">
 						<img ng-src="/resources/images/{{pod}}.png">
@@ -57,9 +62,7 @@
 						<h2 class="pod-name" ng-class="{'pod-title-up':searchep}">{{episode.nr}}. {{episode.name}}</h2>
 						<!-- Display info in each episode -->
 						<div ng-show="searchep || episode.showMin" ng-repeat="minute in filtered = (episode.minutes | filter:searchep | orderBy:'nr')" ng-if="minute.text != ''" class="pod-show-hide">
-							<p class='inline'>{{minute.nr}} minuter: "
-								<!-- Make search word bold -->
-								<span class='inline' ng-bind-html="boldSearch(minute.text,searchep)"></span>"
+							<p class='inline'>{{minute.nr}} minuter: "<span class='inline' ng-bind-html="boldSearch(minute.text,searchep)"></span>"
 							</p>
 							<!-- Delete episode info -->
 							<i class="delete-icon fas fa-exclamation-circle" data-toggle="modal" data-target="#showDeleteInfo" ng-click="setDeleteInfo(minute,episode)"></i>

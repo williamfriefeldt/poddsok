@@ -8,11 +8,17 @@ poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
 	$scope.allPods=Model.getPods(); /* Get all podcasts from Model */
 	$scope.podShow = false;
 	$scope.sent = false;
+	$scope.sortEps = true;
 
 	/* Show/hide podcasts to show/hide episodes */
 	$scope.showPod = function(){
 		$scope.searchpodd='';
 		$scope.podShow = !$scope.podShow;
+	};
+
+	/* Change order on displaying episodes*/
+	$scope.changeSort = function(){
+		$scope.sortEps=!$scope.sortEps;
 	};
 
 	/* Get episodes for given podcast (from firebase, through Model) */

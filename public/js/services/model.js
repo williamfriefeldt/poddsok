@@ -67,6 +67,10 @@ poddsokApp.factory('Model',function($http,$q,Firebase){
 			name:'Mellan Himmel och Jord'
 		},
 		{
+			title:'mordpodden',
+			name:'Mordpodden'
+		},
+		{
 			title:'skaringerochmannheimer',
 			name:'Skäringer & Mannheimer'
 		},
