@@ -1,13 +1,16 @@
 poddsokApp.factory('Model',function($http,$q,Firebase){
 
+	/* Get all podcasts */
 	this.getPods = function(){
 		return podcasts;
 	};
 
+	/* Get all podcasts */
 	this.getEps = function(){
 		return episodes;
 	}
 
+	/* Get episode from given podcast frome firebase - store in var episodes */
 	this.getEpisodes=function(pod){
 		var def = $q.defer();
 		Firebase.getEpisodes(pod).then(function(data){
@@ -21,6 +24,7 @@ poddsokApp.factory('Model',function($http,$q,Firebase){
 		return def.promise;
 	};
 
+	/* Set new episode info to firebase through firebase service */
 	this.addEpInfo=function(pod,ep,minutes){
 		var def = $q.defer();
 		var data ={
@@ -34,6 +38,7 @@ poddsokApp.factory('Model',function($http,$q,Firebase){
 		return def.promise;
 	};
 
+	/* Local variables for episodes and podcasts */
 	var episodes= [];
 	var podcasts = [
 		{

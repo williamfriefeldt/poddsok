@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal (pop-up)-->
 <div class="modal fade" id="showAddInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-controller="AddInfoCtrl">
   <div class="modal-dialog" role="document">
     <div class="modal-content ">
@@ -9,7 +9,9 @@
         </button>
       </div>
       <div class="modal-body">
+        <!-- Input fields to add episode info -->
         <form ng-show="!sent">
+          <!-- Podcast -->
           <div class="form-group">
             <input ng-keydown="showDrop('in-pod'); input.ep=false; input.min=false;  input.text=false; input.send=false" type="text" class="dropdown-toggle modal-input" id="formPod" ng-model="podcastText" placeholder="Podcast..." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="in-pod dropdown-menu" aria-labelledby="formPod">
@@ -17,6 +19,7 @@
               <a ng-show="!res.length" class="dropdown-item">Podcasten finns inte...</a>
             </div>
           </div>
+          <!-- Episode -->
           <div class="form-group">
             <input ng-keydown="input.min=false; input.text=false; input.send=false" ng-click="showDrop('in-ep')" type="text" class="dropdown-toggle modal-input" id="formEp" ng-model="episodeText" placeholder="Avsnitt..." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-disabled="!input.ep">
             <div class="dropdown-menu" aria-labelledby="formEp">
@@ -24,6 +27,7 @@
               <a ng-show="!res2.length" class="dropdown-item">Avsnittet finns inte...</a>
             </div>
           </div>
+          <!-- Time -->
           <div class="form-group">
             <input ng-keydown="input.text=false; input.send=false" type="text" class="dropdown-toggle modal-input" id="formTime" ng-model="minText" placeholder="Tid..." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-disabled="!input.min">
             <div class="dropdown-menu" aria-labelledby="formTime">
@@ -31,22 +35,26 @@
               <a ng-show="!res3.length" class="dropdown-item">Tiden finns inte...</a>
             </div>
           </div>
+          <!-- Text -->
           <div class="form-group">
             <label ng-disabled="!input.text">Ord eller mening:</label>
             <textarea ng-keydown="input.send=true" class="form-control" ng-model="text" rows="3" ng-disabled="!input.text"></textarea>
           </div>
         </form>
+        <!-- Submit text -->
         <div class="col-12 pod-show-hide" ng-show="sent">
             <img class="offset-5" src="/resources/gifs/loading2.gif" ng-show="loadSend">
+            <!-- Info sumbitted -->
             <h1 ng-if="!minInfo.status" class="offset-2 col-8 offset-sm-3 col-sm-6" ng-show="!loadSend">Tillagt!</h1>
+            <!-- Info already exists -->
             <div ng-if="minInfo.status">
               <p>På minut {{minInfo.min}} i avsnitt <i>{{minInfo.ep}}</i> står redan:</p><br>
               <p class="center"><i>{{minInfo.mintext}}</i></p><br>
               <p>Vill du ändå lägga till "{{text}}"?</p>
             </div>
         </div>
-        
       </div>
+      <!-- Submit info -->
       <div class="modal-footer">
         <button ng-if="minInfo.status" type="button" class="btn btn-primary btn-send" ng-click="send(true)">{{minInfo.btnText}}</button>
         <button type="button" class="btn btn-primary btn-send" ng-click="send(); getEpisodes(podTitle)" ng-disabled="!input.send || !text">{{sendText}}</button>

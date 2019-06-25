@@ -8,12 +8,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <!-- Delete info text -->
       <div class="modal-body" ng-show="!sent">
         <p>Stämmer det inte att <i>"{{deleteInfo.min.text}}"</i> nämns på minut {{deleteInfo.min.nr}} i avsnitt {{deleteInfo.ep.nr}}.{{deleteInfo.ep.name}}?</p>
       </div>
+      <!-- Delete info submit -->
       <div class="modal-footer" ng-show="!sent">
         <button type="button" class="btn btn-primary btn-send" ng-click="sendDeleteInfo(deleteInfo)">Stämmer ej</button>
       </div>
+      <!-- Submit text -->
       <div ng-show="sent">
         <img class="offset-5" src="/resources/gifs/loading2.gif" ng-show="loadingDel">
         <h2 style="padding: 5%" class="center col-12" ng-show="!loadingDel">Tack för din feedback!</h2>

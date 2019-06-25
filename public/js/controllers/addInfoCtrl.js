@@ -1,18 +1,19 @@
 poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 
-	//Variables and scopes
+	//* Set local variables */
 	var podcast = {title:''};
 	var pods = Model.getPods();
-	$scope.allPods=pods;
 	var episode;
 	var min;
 	var maxMin;
 
+	/* Scopes - variables accessable from HTML */
+	$scope.allPods=pods;
 	$scope.podcastText='';
-	$scope.sendText='Lägg till';
-	
+	$scope.sendText='Lägg till';	
 	$scope.sent=false;
-	
+	$scope.episodes;
+	$scope.loadSend=false;
 	$scope.input={
 		ep:false,
 		min:false,
@@ -20,10 +21,7 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 		send:false
 	};
 
-	$scope.episodes;
-	$scope.loadSend=false;
-
-	//Functions
+	/* Show/hide dropdown menu when user press key*/
 	$scope.showDrop = function(show){
 		$('.'+show).show();
 	};
@@ -31,6 +29,7 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 		$('.'+hide).hide();
 	}
 
+	/* Create time array with all minutes from 1 to maxMin (=episode length) */
 	var time = function(){
 		var array=[];
 		for(var i=1;i<=maxMin;i++){
@@ -41,11 +40,13 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 		$scope.time=array;
 	};
 
+	/* Set choosen podcast*/
 	$scope.choosePod = function(pod){
 		$scope.podcastText=pod.name;
 		podcast=pod;
 	};
 
+	/* Set choosen episode */
 	$scope.chooseEp = function(length,nr,text){
 		$scope.episodeText=text;
 		maxMin = length;
@@ -53,12 +54,14 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 		time();
 	};
 
+	/* Set choosen time */
 	$scope.chooseTime = function(i){
 		$scope.minText=i+" minuter";
 		$scope.input.text=true;
 		min=i;
 	};
 
+	/* Get episodes for given podcast */
 	$scope.getEps = function(pod){
 		$scope.podTitle=pod.title;
 		$scope.episodeText ='Laddar avsnitt...';
@@ -73,6 +76,7 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 		});
 	};
 
+	/* Sends users input to firebase, updates the episode info */ 
 	$scope.send = function(overwrite){
 		if($scope.sent==false || overwrite){
 			$scope.minInfo={status:false};
@@ -112,6 +116,7 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 
 	};
 
+	/* Reset scopes and variables */
 	var clear = function(){
 		overwrite=false;
 		$scope.minInfo={status:false};

@@ -1,16 +1,21 @@
 poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
 
-	$scope.allPods=Model.getPods();
+	/* Set local variables */
 	var podcast;
 	var deleteInfo;
+
+	/* Scopes - variables accessable from HTML */
+	$scope.allPods=Model.getPods(); /* Get all podcasts from Model */
 	$scope.podShow = false;
 	$scope.sent = false;
 
+	/* Show/hide podcasts to show/hide episodes */
 	$scope.showPod = function(){
 		$scope.searchpodd='';
 		$scope.podShow = !$scope.podShow;
 	};
 
+	/* Get episodes for given podcast (from firebase, through Model) */
 	$scope.getEpisodes = function(pod){
 		$scope.loading=true;
 		$scope.searchep='';
@@ -22,12 +27,14 @@ poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
 		});
 	};
 
+	/* Makes search word bold */
 	$scope.boldSearch = function(text,search){
 		var boldSearch = text.match(new RegExp(search,'i'))[0];
 		text = text.replace(boldSearch,"<div class='search-word inline'><strong>"+boldSearch+'</strong></div>');
 		return text;
 	};
 
+	/* Set object with delete info */
 	$scope.setDeleteInfo = function(min,ep){
 		$scope.sent=false;
 		deleteInfo={
@@ -44,6 +51,7 @@ poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
 		$scope.deleteInfo=deleteInfo;
 	};
 
+	/* Send delete info to firebase */
 	$scope.sendDeleteInfo = function(info){
 		$scope.sent=true;
 		$scope.loadingDel=true;
@@ -52,6 +60,7 @@ poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
 		});
 	};
 
+	/* Show/hide all info about an episode */
 	$scope.showMinText = function(ep){
 		ep.showMin = !ep.showMin;
 	};

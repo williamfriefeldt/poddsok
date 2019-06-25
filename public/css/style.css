@@ -1,3 +1,4 @@
+/* --- Mobile settings --- */
 @media (max-width: 980px){
 	.modal-dialog {
    		max-width: 75% !important;
@@ -18,9 +19,7 @@
 	}
 }
 
-.modal-dialog{
-	max-width: 60%;
-}
+/* --- General --- */
 body{
 	background-color: #320E44;
 	color:white;
@@ -84,22 +83,11 @@ p{
 .center{
 	text-align: center;
 }
+.inline{
+	display:inline;
+}
 .close{
 	font-size: 50px;
-}
-.pod{
-	margin-bottom:1.25%;
-	background-color: #431651;
-	border-radius:25px 25px 25px 25px;
-}
-.pod-name{
-	margin-top: 3.75%;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-.col-3{
-	padding-left: 0 !important;
 }
 .click{
 	cursor: pointer;
@@ -112,7 +100,15 @@ p{
 	font-size:48.5px;
 	margin-left: 25%;
 }
-/*Show pod*/
+.col-3{
+	padding-left: 0 !important;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+/* --- Podcast settings ---*/
 .pod-show-hide {
  	transition: all linear 1.5s;
 }
@@ -120,8 +116,19 @@ p{
  	opacity: 0;
  	transition: none;
 }
-/*-------------*/
-/*Menu*/
+.pod{
+	margin-bottom:1.25%;
+	background-color: #431651;
+	border-radius:25px 25px 25px 25px;
+}
+.pod-name{
+	margin-top: 3.75%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+/* --- Menu --- */
 .menu{
 	text-align: center;
 	font-size: 35px;
@@ -137,7 +144,7 @@ p{
 	color: white;
 }
 
-/*Modal*/
+/* --- Modal (pop-up) --- */
 .modal{
 	color: #431651;
 }
@@ -149,12 +156,9 @@ p{
 	padding-left:3% !important;
 
 }
-/*General*/
-::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+.modal-dialog{
+	max-width: 60%;
 }
-/*AddInfo*/
 .sent{
 	height:200px;
 }
@@ -169,10 +173,7 @@ p{
 	overflow-y: scroll;
 	width: 80%;
 }
-/*Search minutes text*/
-.inline{
-	display:inline;
-}
+/* --- Episode info --- */
 .min-text{
 	padding-left: 2%;
 }
@@ -199,7 +200,8 @@ p{
 	float:right;
 	padding: 2%;
 }
-/*About*/
+
+/* --- About-view --- */
 .about{
 	font-size: 30px;
 	margin-top: 3%;

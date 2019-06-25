@@ -1,5 +1,6 @@
 poddsokApp.factory('Firebase', function ($q) {
 
+	/* Poddsök firebase setup */
 	var config = {
 	  apiKey: "AIzaSyC3Jx94GLlQlmMd36cFYonw2MrfTXf4YPE",
 	  authDomain: "poddsok.firebaseapp.com",
@@ -8,6 +9,7 @@ poddsokApp.factory('Firebase', function ($q) {
 
 	firebase.initializeApp(config);
 
+	/* Get episodes from firebase for given pod*/
 	this.getEpisodes = function(pod){
 		var def = $q.defer();
 		firebase.database().ref('/'+pod+'/').once('value').then(function(snapshot) {
@@ -17,6 +19,7 @@ poddsokApp.factory('Firebase', function ($q) {
 		return def.promise;
 	};
 
+	/* Add new episode info to firebase */
 	this.setEpInfo = function(data){
 	  	var updates = {};
 	  	updates['/'+data.podcast+'/ep'+data.episode+'/minutes/'] = data.minutes;
@@ -24,6 +27,7 @@ poddsokApp.factory('Firebase', function ($q) {
 	  	return firebase.database().ref().update(updates);
 	};
 
+	/* Updates delete info on given episode - in value == 3, delete episode info */
 	this.setDeleteVal = function(data){
 		var def = $q.defer();
 		firebase.database().ref('/'+data.pod+'/ep'+data.ep.nr+'/minutes/min'+data.min.nr+'/').once('value').then(function(snapshot) {
