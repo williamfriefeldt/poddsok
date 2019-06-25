@@ -1,4 +1,4 @@
-# Poddsök.nu
+# Poddsök.nu :boom:
 
 ## Syfte
 Webbapplikation för att hitta vart ord/meningar nämns i olika podcast. 
@@ -18,4 +18,4 @@ Webbapplikation för att hitta vart ord/meningar nämns i olika podcast.
 * Firebase
 
 ## Upphovsrätt
-Projektet är skapat av William Friefeldt som besitter alla *ekonomiska* och *idella* rättigheter enligt upphovsrätten (copyright)
+Projektet är skapat av William Friefeldt som besitter alla *ekonomiska* och *idella* rättigheter enligt upphovsrätten (copyright). https://www.prv.se/sv/varfor-immaterialratt/ordlista/copyright/
