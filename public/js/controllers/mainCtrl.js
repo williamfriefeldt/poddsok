@@ -30,6 +30,8 @@ poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
 			$scope.pod=pod;
 			podcast=pod;
 			$scope.loading=false;
+		}).catch(function(){
+			console.log('Ops något gick fel!');
 		});
 	};
 
