@@ -23,6 +23,7 @@ poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
 
 	/* Get episodes for given podcast (from firebase, through Model) */
 	$scope.getEpisodes = function(pod){
+		
 		$scope.loading=true;
 		$scope.searchep='';
 		Model.getEpisodes(pod).then(function(){
@@ -30,8 +31,6 @@ poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
 			$scope.pod=pod;
 			podcast=pod;
 			$scope.loading=false;
-		}).catch(function(){
-			console.log('Ops något gick fel!');
 		});
 	};
 

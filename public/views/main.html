@@ -48,8 +48,8 @@
 
 		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" id="eps" ng-show="!loading">
 			<!-- Loop through episodes -->
-			<div ng-repeat="episode in episodes | filter: searchep | orderBy: sortEps ? 'nr' : '-nr' | filter:query as resEp">
-				<div class="pod row" ng-show="filtered.length>0">
+			<div ng-repeat="episode in episodes | filter: {minutes:{text:searchep}} | orderBy: sortEps ? 'nr' : '-nr' | filter:query as resEp">
+				<div class="pod row">
 					<div class="col-3 col-md-2">
 						<img ng-src="/resources/images/{{pod}}.png">
 					</div>
@@ -61,7 +61,7 @@
 						</div>
 						<h2 class="pod-name" ng-class="{'pod-title-up':searchep}">{{episode.nr}}. {{episode.name}}</h2>
 						<!-- Display info in each episode -->
-						<div ng-show="searchep || episode.showMin" ng-repeat="minute in filtered = (episode.minutes | filter:searchep | orderBy:'nr')" ng-if="minute.text != ''" class="pod-show-hide">
+						<div ng-show="searchep || episode.showMin" ng-repeat="minute in filtered = (episode.minutes | filter:{text:searchep} | orderBy:'nr')" ng-if="minute.text != ''" class="pod-show-hide">
 							<p class='inline'>{{minute.nr}} minuter: "<span class='inline' ng-bind-html="boldSearch(minute.text,searchep)"></span>"
 							</p>
 							<!-- Delete episode info -->

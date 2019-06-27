@@ -1,4 +1,4 @@
-poddsokApp.factory('Model',function($http,$q,Firebase){
+poddsokApp.factory('Model',function($q,Firebase){
 
 	/* Get all podcasts */
 	this.getPods = function(){
