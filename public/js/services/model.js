@@ -75,6 +75,10 @@ poddsokApp.factory('Model',function($q,Firebase){
 			name:'Skäringer & Mannheimer'
 		},
 		{
+			title:'tom-och-petter',
+			name:"Tom och Petter"
+		},
+		{
 			title:'wahlgrenochwistam',
 			name:'Wahlgren & Wistam'
 		}
