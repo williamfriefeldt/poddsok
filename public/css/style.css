@@ -65,6 +65,9 @@ label,textarea{
 .btn[disabled]{
 	background-color: #320E44;
 }
+.btn-send:focus{
+	outline:none;
+}
 input[placeholder]{
 	padding-left: 7.5%;
 }
