@@ -16,3 +16,8 @@ poddsokApp.config(['$routeProvider',function($routeProvider){
 		});
 }]);
 
+
+/* Make spotify uri safe */
+poddsokApp.config(function ($compileProvider) {
+	$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|spotify):/);
+});
