@@ -56,10 +56,21 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 
 	/* Set choosen time */
 	$scope.chooseTime = function(i){
-		$scope.minText=i+" minuter";
+		if(i === 1) {
+			$scope.minText = " minut";
+		} else {
+			$scope.minText=i+" minuter";		
+		}
 		$scope.input.text=true;
 		min=i;
 	};
+
+	/* Remove string 'minuter' from time search */
+	$scope.stripMin = function(min){
+		if(min) {
+			return min.replace(/[^0-9]+/, '');			
+		}
+	}
 
 	/* Get episodes for given podcast */
 	$scope.getEps = function(pod){

@@ -15,7 +15,7 @@
           <div class="form-group">
             <input ng-keydown="showDrop('in-pod'); input.ep=false; input.min=false;  input.text=false; input.send=false" type="text" class="dropdown-toggle modal-input" id="formPod" ng-model="podcastText" placeholder="Podcast..." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="in-pod dropdown-menu" aria-labelledby="formPod">
-              <a ng-repeat="pod in allPods | filter:{name:podcastText} | filter:query as res" ng-click="choosePod(pod); getEps(pod); hideDrop('in-pod')" class="dropdown-item">{{pod.name}}</a>
+              <a ng-repeat="pod in allPods | filter:{name:podcastText} | filter:query as res" ng-click="choosePod(pod); getEps(pod); hideDrop('in-pod')" class="click dropdown-item">{{pod.name}}</a>
               <a ng-show="!res.length" class="dropdown-item">Podcasten finns inte...</a>
             </div>
           </div>
@@ -23,7 +23,7 @@
           <div class="form-group">
             <input ng-keydown="input.min=false; input.text=false; input.send=false" ng-click="showDrop('in-ep')" type="text" class="dropdown-toggle modal-input" id="formEp" ng-model="episodeText" placeholder="Avsnitt..." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-disabled="!input.ep">
             <div class="dropdown-menu" aria-labelledby="formEp">
-              <a ng-repeat="ep in episodes | orderBy:'nr' | filter:{text:episodeText} | filter:query as res2" ng-click="chooseEp(ep.length,ep.nr,ep.text); hideDrop('in-ep')" class="dropdown-item">{{ep.text}}</a>
+              <a ng-repeat="ep in episodes | orderBy:'nr' | filter:{text:episodeText} | filter:query as res2" ng-click="chooseEp(ep.length,ep.nr,ep.text); hideDrop('in-ep')" class="click dropdown-item">{{ep.text}}</a>
               <a ng-show="!res2.length" class="dropdown-item">Avsnittet finns inte...</a>
             </div>
           </div>
@@ -31,7 +31,7 @@
           <div class="form-group">
             <input ng-keydown="input.text=false; input.send=false" type="text" class="dropdown-toggle modal-input" id="formTime" ng-model="minText" placeholder="Tid..." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-disabled="!input.min">
             <div class="dropdown-menu" aria-labelledby="formTime">
-              <a ng-repeat="i in time | filter:minText | filter:query as res3" ng-click="chooseTime(i)" class="dropdown-item">{{i}} minuter</a>
+              <a ng-repeat="i in time | filter:stripMin(minText) | filter:query as res3" ng-click="chooseTime(i)" class="click dropdown-item">{{i}} minuter</a>
               <a ng-show="!res3.length" class="dropdown-item">Tiden finns inte...</a>
             </div>
           </div>
@@ -45,7 +45,7 @@
         <div class="col-12 pod-show-hide" ng-show="sent">
             <img class="offset-5" src="/resources/gifs/loading2.gif" ng-show="loadSend">
             <!-- Info sumbitted -->
-            <h1 ng-if="!minInfo.status" class="offset-2 col-8 offset-sm-3 col-sm-6" ng-show="!loadSend">Tillagt!</h1>
+            <h1 ng-if="!minInfo.status" class="offset-2 col-8 offset-sm-3 col-sm-6" ng-show="!loadSend">Tillagt<i class="fas fa-check-circle"></i></h1>
             <!-- Info already exists -->
             <div ng-if="minInfo.status">
               <p>På minut {{minInfo.min}} i avsnitt <i>{{minInfo.ep}}</i> står redan:</p><br>

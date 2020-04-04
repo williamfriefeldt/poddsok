@@ -13,6 +13,14 @@
 		max-height: 1350px !important;
 	}
 }
+@media (min-height: 950px) and (min-width:1000px){
+	.scroll{
+		max-height: 700px !important;
+	}
+	.about{
+		max-height: 800px !important;
+	}
+}
 @media (max-width: 600px){
 	h1{
 		font-size:75px !important;
@@ -27,7 +35,7 @@ body{
 	overflow-y: hidden;
 }
 h1{
-	font-size: 100px;
+	font-size: 80px;
 	text-align: center;
 	margin-bottom: 2%;
 }
@@ -47,12 +55,12 @@ a:hover{
 }
 input{
 	width: 100%;
-	border-radius: 20px;
+	border-radius: 17.5px;
 	border:none;
 	font-size: 35px;
 	position: center;
 	color:grey;
-	margin-bottom: 5%;
+	margin-bottom: 4%;
 }
 label,textarea{
 	font-size: 30px !important;
@@ -66,7 +74,8 @@ label,textarea{
 	background-color: #320E44;
 }
 .btn-send:focus{
-	outline:none;
+	outline:0;
+	background-color: #320E44;
 }
 input[placeholder]{
 	padding-left: 7.5%;
@@ -75,8 +84,8 @@ input:focus{
 	outline: none;
 }
 img{
-	width:100px;
-	height:100px;
+	width:90px;
+	height:90px;
 	border-radius:25px 25px 25px 25px;
 }
 p{
@@ -91,6 +100,10 @@ p{
 }
 .close{
 	font-size: 50px;
+	outline: none;
+}
+.close:focus{
+	outline: none;
 }
 .click{
 	cursor: pointer;
@@ -100,16 +113,20 @@ p{
 	-webkit-overflow-scrolling: touch; 
 	max-height: 375px;
 }
-.back{
-	font-size:48.5px;
-	margin-left: 25%;
-}
-.col-3{
-	padding-left: 0 !important;
-}
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
+}
+.back{
+	font-size:48.5px;
+		float: right;
+}
+.sort{
+	font-size: 48.5px;
+	margin-left: 30px;
+}
+.col-lg-1{
+	padding-left: 0 !important;
 }
 
 /* --- Podcast settings ---*/
@@ -126,10 +143,12 @@ p{
 	border-radius:25px 25px 25px 25px;
 }
 .pod-name{
-	margin-top: 3.75%;
+	margin-top: 3%;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
+	padding-left:40px;
+	margin-bottom: 25px;
 }
 
 /* --- Menu --- */
@@ -151,6 +170,10 @@ p{
 /* --- Modal (pop-up) --- */
 .modal{
 	color: #431651;
+	border:25px;
+}
+.modal-content{
+	border-radius:2rem;
 }
 .modal-input{
 	border-bottom:2px solid #431651;
@@ -185,7 +208,7 @@ p{
 	font-size: 30px
 }
 .pod-title-up{
-	margin-top: 0.5%;
+	margin-top: 3%;
 }
 .delete-icon{
 	padding-left: 1%;
@@ -228,4 +251,7 @@ p{
 }
 .about-icon:hover{
 	font-size: 45px;
+}
+.play{
+	padding-right:15px;
 }
