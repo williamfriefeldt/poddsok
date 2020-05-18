@@ -1,4 +1,12 @@
-poddsokApp.controller('MainCtrl', function ($scope, Model, Firebase) {
+poddsokApp.controller('MainCtrl', function ($location, $window, $scope, Model, Firebase) {
+
+	var devMode = true; 
+
+	if( devMode === false ) {
+		if ($location.protocol() !== 'https') {
+	        $window.location.href = $location.absUrl().replace('http', 'https');
+	    }
+	}
 
 	/* Set local variables */
 	var podcast;

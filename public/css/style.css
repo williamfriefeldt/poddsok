@@ -131,7 +131,7 @@ p{
 
 /* --- Podcast settings ---*/
 .pod-show-hide {
- 	transition: all linear 1.5s;
+ 	transition: all linear 1s;
 }
 .pod-show-hide.ng-hide {
  	opacity: 0;
