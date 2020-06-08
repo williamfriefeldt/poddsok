@@ -16,10 +16,12 @@ poddsokApp.factory('Model',function($q,Firebase){
 		Firebase.getEpisodes(pod).then(function(data){
 			episodes=Object.values(data);
 			for(var i=0;i<episodes.length;i++){
-				episodes[i].minutes=Object.values(episodes[i].minutes);
-				episodes[i]['showMin']=false;
+				if( episodes[i].minutes !== undefined) { 
+					episodes[i].minutes=Object.values(episodes[i].minutes);
+					episodes[i]['showMin']=false;
+				}
 			}
-			def.resolve();
+			def.resolve(); 
 		});
 		return def.promise;
 	};
@@ -73,6 +75,10 @@ poddsokApp.factory('Model',function($q,Firebase){
 		{
 			title:'skaringerochmannheimer',
 			name:'Skäringer & Mannheimer'
+		},
+		{
+			title:'Specialisterna',
+			name: 'Specialisterna podcast'
 		},
 		{
 			title:'tom-och-petter',

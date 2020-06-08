@@ -79,7 +79,9 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 		Model.getEpisodes(pod.title).then(function(data){
 			episodes=Model.getEps();
 			for(var i=0; i<episodes.length;i++){
-				episodes[i].text=episodes[i].nr+'.'+episodes[i].name;
+				if( episodes[i].minutes !== undefined) {
+					episodes[i].text=episodes[i].nr+'.'+episodes[i].name;
+				}
 			}
 			$scope.input.ep = true;
 			$scope.episodes=episodes;
