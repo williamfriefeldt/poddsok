@@ -45,7 +45,7 @@ poddsokApp.factory('Model',function($q,Firebase){
 					episodes[i]['showMin']=false;
 				}
 			}
-			def.resolve();
+			def.resolve(); 
 		});
 		return def.promise;
 	};
