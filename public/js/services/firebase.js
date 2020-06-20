@@ -13,7 +13,15 @@ poddsokApp.factory('Firebase', function ($q) {
 	this.getEpisodes = function(pod){
 		var def = $q.defer();
 		firebase.database().ref('/'+pod+'/').once('value').then(function(snapshot) {
-			console.log("Success! Data from database");
+			def.resolve(snapshot.val());
+		});
+		return def.promise;
+	};
+
+	/* Get podcasts from firebase */
+	this.getPodcasts = function(){
+		var def = $q.defer();
+		firebase.database().ref('/').once('value').then(function(snapshot) {
 			def.resolve(snapshot.val());
 		});
 		return def.promise;
@@ -23,7 +31,6 @@ poddsokApp.factory('Firebase', function ($q) {
 	this.setEpInfo = function(data){
 	  	var updates = {};
 	  	updates['/'+data.podcast+'/ep'+data.episode+'/minutes/'] = data.minutes;
-	  	console.log('Info tillagd i '+data.podcast+' avsnitt '+data.episode);
 	  	return firebase.database().ref().update(updates);
 	};
 
@@ -44,7 +51,6 @@ poddsokApp.factory('Firebase', function ($q) {
 				var addDeleteVal = {nr:res.nr,text:res.text,deleteVal:deleteStatus};
 	  			updates['/'+data.pod+'/ep'+data.ep.nr+'/minutes/min'+data.min.nr+'/'] = addDeleteVal;
 	  		}
-	  		console.log(updates);
 	  		firebase.database().ref().update(updates);
 	  		def.resolve('sent');
 		});

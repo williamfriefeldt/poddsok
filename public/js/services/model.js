@@ -5,6 +5,30 @@ poddsokApp.factory('Model',function($q,Firebase){
 		return podcasts;
 	};
 
+	this.getPodcasts = function() {
+		var def = $q.defer();
+		if( podcasts.length === 0 ) {
+			Firebase.getPodcasts().then(function(data){
+				var titles = Object.keys(data);
+				var eps = Object.values(data);
+				titles.forEach(function( title, index ) {
+					if( eps[index].info !== undefined ) {
+						var info = eps[index].info;
+					}
+					podcasts.push( { 
+						title: title, 
+						name: info.name, 
+						info: info
+					} );
+				})
+				def.resolve();
+			});
+		} else {
+			def.resolve();
+		}
+		return def.promise;
+	}
+
 	/* Get all podcasts */
 	this.getEps = function(){
 		return episodes;
@@ -42,49 +66,7 @@ poddsokApp.factory('Model',function($q,Firebase){
 
 	/* Local variables for episodes and podcasts */
 	var episodes= [];
-	var podcasts = [
-		{
-			title:'alexochsigge',
-			name:'Alex och Sigges podcast'
-		},
-		{
-
-			title:'aliceochbianca',
-			name:'Alice & Bianca - Har du sagt A får du säga B'
-		},
-		{
-			title:'en-varg',
-			name:'En varg söker sin pod'
-		},
-		{
-			title:'fredagspodden',
-			name:'Fredagspodden'
-		},
-		{
-			title:'livet-pa-laktaren',
-			name:'Livet på läktaren'
-		},
-		{
-			title:'mellan-himmel-jord',
-			name:'Mellan Himmel och Jord'
-		},
-		{
-			title:'mordpodden',
-			name:'Mordpodden'
-		},
-		{
-			title:'skaringerochmannheimer',
-			name:'Skäringer & Mannheimer'
-		},
-		{
-			title:'tom-och-petter',
-			name:"Tom och Petter"
-		},
-		{
-			title:'wahlgrenochwistam',
-			name:'Wahlgren & Wistam'
-		}
-	];
+	var podcasts = [];
 
 	return this;
 });

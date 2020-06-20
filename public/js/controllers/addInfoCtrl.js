@@ -74,7 +74,7 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 
 	/* Get episodes for given podcast */
 	$scope.getEps = function(pod){
-		$scope.podTitle=pod.title;
+		$scope.podTitle=pod;
 		$scope.episodeText ='Laddar avsnitt...';
 		Model.getEpisodes(pod.title).then(function(data){
 			episodes=Model.getEps();

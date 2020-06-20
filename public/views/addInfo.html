@@ -15,7 +15,7 @@
           <div class="form-group">
             <input ng-keydown="showDrop('in-pod'); input.ep=false; input.min=false;  input.text=false; input.send=false" type="text" class="dropdown-toggle modal-input" id="formPod" ng-model="podcastText" placeholder="Podcast..." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="in-pod dropdown-menu" aria-labelledby="formPod">
-              <a ng-repeat="pod in allPods | filter:{name:podcastText} | filter:query as res" ng-click="choosePod(pod); getEps(pod); hideDrop('in-pod')" class="click dropdown-item">{{pod.name}}</a>
+              <a ng-repeat="pod in allPods | filter:{name:podcastText} | orderBy: 'name' | filter:query as res" ng-click="choosePod(pod); getEps(pod); hideDrop('in-pod')" class="click dropdown-item">{{pod.name}}</a>
               <a ng-show="!res.length" class="dropdown-item">Podcasten finns inte...</a>
             </div>
           </div>

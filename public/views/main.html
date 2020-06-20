@@ -17,11 +17,11 @@
 			<input ng-model="searchpodd" placeholder="Podcast...">
 		</div>
 
-		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-			<div ng-repeat="pod in allPods | filter:searchpodd | filter:query as res">
-				<div class="pod click row" ng-click="showPod(); getEpisodes(pod.title)">
+		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" ng-show="!loading">
+			<div ng-repeat="pod in allPods | filter:searchpodd | orderBy: 'name' | filter:query as res">
+				<div class="pod click row" ng-click="showPod(); getEpisodes(pod)">
 					<div class="col-2 col-lg-1">
-						<img ng-src="/resources/images/{{pod.title}}.png">
+						<img ng-src="{{pod.info.image}}">
 					</div>
 					<div class="col-10 col-lg-11">
 						<h2 class="pod-name">{{pod.name}}</h2>
@@ -51,7 +51,7 @@
 			<div ng-repeat="episode in episodes | filter: {minutes:{text:searchep}} | orderBy: sortEps ? 'nr' : '-nr' | filter:query as resEp">
 				<div class="pod row">
 					<div class="col-2 col-lg-1">
-						<img ng-src="/resources/images/{{pod}}.png">
+						<img ng-src="{{pod.info.image}}">
 					</div>
 					<div class="col-10 col-lg-11">
 						<!-- Show/hide info in episode -->
@@ -75,9 +75,12 @@
 					Texten finns inte... Vet du var det nämns? Lägg till <u><a data-toggle="modal" data-target="#showAddInfo">här</a></u>!
 			</div>
 		</div>
-		<!-- Loading symbol when retrieving episodes -->
-		<div class="col-12 col-sm-6 offset-sm-3" ng-show="loading">
-			<img class="offset-5" src="/resources/gifs/loading.gif">
-		</div>
+		
 	</div>
+
+	<!-- Loading symbol  -->
+	<div class="col-12 col-sm-6 offset-sm-3" ng-show="loading">
+		<img class="offset-5" src="/resources/gifs/loading.gif">
+	</div>
+
 </div>

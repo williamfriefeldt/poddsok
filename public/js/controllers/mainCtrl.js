@@ -13,7 +13,12 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, Model, F
 	var deleteInfo;
 
 	/* Scopes - variables accessable from HTML */
-	$scope.allPods=Model.getPods(); /* Get all podcasts from Model */
+	$scope.loading=true;
+	/* Get all podcasts from Model */
+	Model.getPodcasts().then( function() { 
+		$scope.allPods= Model.getPods();
+		$scope.loading=false;
+	}); 
 	$scope.podShow = false;
 	$scope.sent = false;
 	$scope.sortEps = true;
@@ -31,10 +36,9 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, Model, F
 
 	/* Get episodes for given podcast (from firebase, through Model) */
 	$scope.getEpisodes = function(pod){
-		
 		$scope.loading=true;
 		$scope.searchep='';
-		Model.getEpisodes(pod).then(function(){
+		Model.getEpisodes(pod.title).then(function(){
 			$scope.episodes=Model.getEps();
 			$scope.pod=pod;
 			podcast=pod;
@@ -53,7 +57,7 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, Model, F
 	$scope.setDeleteInfo = function(min,ep){
 		$scope.sent=false;
 		deleteInfo={
-			pod:podcast,
+			pod:podcast.title,
 			ep:{
 				nr:ep.nr,
 				name:ep.name,
