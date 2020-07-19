@@ -4,16 +4,19 @@
 	<!-- AddInfo popup -->
 	<div ng-include="'../views/addInfo.html'"></div>
 	<!-- Show AddInfo popup -->
-	<div class="offset-2 offset-sm-7 offset-md-8 offset-lg-9">
-		<div class="row">
-			<a class="col-5 col-sm-7 menu" data-toggle="modal" data-target="#showAddInfo">Lägg till</a>
-			<a href="/#!/om" class="col-4 col-sm-4 menu">Om</a>
+	<div class="header-1">
+		<div class="offset-2 offset-sm-7 offset-md-8 offset-lg-9">
+			<div class="row">
+				<a class="col-5 col-sm-7 menu" data-toggle="modal" data-target="#showAddInfo">Lägg till</a>
+				<a href="/#!/om" class="col-4 col-sm-4 menu">Om</a>
+			</div>
 		</div>
+		<h1 class="offset-1 col-10">poddsök.nu</h1>
+		<p class="center infoText" ng-if="infoText"> {{ infoText }}</p>
 	</div>
-	<h1 class="offset-1 col-10">poddsök.nu</h1>
 	<!-- Display podcasts -->
 	<div class="row pod-show-hide" ng-show="!podShow">
-		<div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+		<div class="header-2 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
 			<input ng-model="searchpodd" placeholder="Podcast...">
 		</div>
 
@@ -38,7 +41,7 @@
 		<div class="offset-2 col-1 offset-lg-3 col-lg-1">
 			<i class="fas fa-arrow-alt-circle-left click back" ng-click="showPod()"></i>
 		</div>
-		<div class="col-6 col-lg-4">
+		<div class="header-2 col-6 col-lg-4">
 			<input ng-model="searchep" placeholder="Mening eller ord...">
 		</div>
 		<div class="col-1 col-lg-1">
@@ -55,7 +58,7 @@
 					</div>
 					<div class="col-10 col-lg-11">
 						<!-- Show/hide info in episode -->
-						<div ng-if="episode.minutes.length>1 && !searchep" ng-click="showMinText(episode)" ng-show="!searchep">
+						<div ng-if="episode.minutes.length>1 && episode.epTxt && !searchep" ng-click="showMinText(episode)" ng-show="!searchep">
 							<i ng-show="!episode.showMin" class="fa fa-plus-circle eptext-show delete-icon"></i>
 							<i ng-show="episode.showMin" class="fa fa-minus-circle eptext-show delete-icon"></i>
 						</div>

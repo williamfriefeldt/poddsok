@@ -5,26 +5,10 @@
     	margin: 1.75rem auto;
     }
 }
-@media (min-height: 900px){
-	.scroll{
-		max-height: 1200px !important;
-	}
-	.about{
-		max-height: 1350px !important;
-	}
-}
-@media (min-height: 950px) and (min-width:1000px){
-	.scroll{
-		max-height: 700px !important;
-	}
-	.about{
-		max-height: 800px !important;
-	}
-}
-@media (max-width: 600px){
-	h1{
-		font-size:75px !important;
-	}
+@media (min-height: 1700px){
+	.scroll {
+		max-height: calc(100vh - 225px) !important;
+	} 
 }
 
 /* --- General --- */
@@ -35,12 +19,12 @@ body{
 	overflow-y: hidden;
 }
 h1{
-	font-size: 80px;
+	font-size: 55px;
 	text-align: center;
 	margin-bottom: 2%;
 }
 h2{
-	font-size: 40px;
+	font-size: 35px;
 }
 a{
 	color: white;
@@ -57,7 +41,7 @@ input{
 	width: 100%;
 	border-radius: 17.5px;
 	border:none;
-	font-size: 35px;
+	font-size: 30px;
 	position: center;
 	color:grey;
 	margin-bottom: 4%;
@@ -84,13 +68,23 @@ input:focus{
 	outline: none;
 }
 img{
-	width:90px;
-	height:90px;
+	width:85px;
+	height:85px;
 	border-radius:25px 25px 25px 25px;
 }
 p{
 	font-size: 25px;
 	margin-bottom: 0;
+}
+.infoText {
+	margin-top: -30px;
+	font-size: 20px;
+}
+.header-1 {
+	height: 160px;
+}
+.header-2 {
+	height: 65px;
 }
 .center{
 	text-align: center;
@@ -111,7 +105,7 @@ p{
 .scroll{
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch; 
-	max-height: 375px;
+	max-height: calc(100vh - 225px);
 }
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
@@ -154,7 +148,7 @@ p{
 /* --- Menu --- */
 .menu{
 	text-align: center;
-	font-size: 35px;
+	font-size: 27.5px;
 	cursor: pointer;
 	background-color: #431651;
 	border-radius:25px 25px 25px 25px;
@@ -231,7 +225,7 @@ p{
 .about{
 	font-size: 30px;
 	margin-top: 3%;
-	max-height: 550px;
+	max-height: 80vh;
 	overflow-y: auto;
 }
 .about a{

@@ -22,9 +22,13 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, Model, F
 	$scope.podShow = false;
 	$scope.sent = false;
 	$scope.sortEps = true;
+	$scope.infoText = 'Välj en podcast';
 
 	/* Show/hide podcasts to show/hide episodes */
 	$scope.showPod = function(){
+		if( $scope.infoText === 'Sök efter ord eller mening' ) {
+			$scope.infoText = false;
+		}
 		$scope.searchpodd='';
 		$scope.podShow = !$scope.podShow;
 	};
@@ -36,6 +40,11 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, Model, F
 
 	/* Get episodes for given podcast (from firebase, through Model) */
 	$scope.getEpisodes = function(pod){
+		if( $scope.infoText === 'Välj en podcast' ) {
+			$scope.infoText = 'Sök efter ord eller mening';
+		} else {
+			$scope.infoText = false;
+		}
 		$scope.loading=true;
 		$scope.searchep='';
 		Model.getEpisodes(pod.title).then(function(){
