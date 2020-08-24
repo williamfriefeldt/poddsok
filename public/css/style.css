@@ -113,7 +113,7 @@ p{
 }
 .back{
 	font-size:48.5px;
-		float: right;
+	float: right;
 }
 .sort{
 	font-size: 48.5px;
@@ -247,4 +247,22 @@ p{
 }
 .play{
 	padding-right:15px;
+}
+.app-icon {
+	margin-left: auto;
+  	margin-right: auto;
+  	display: block;
+  	margin-top: 2%;
+  	color: #320E44;
+}
+.app-info-title{
+	width: 100%;
+}
+.cookie-consent {
+	top: 75%;
+	left: 50%;
+	opacity: 1;
+}
+.cookie-consent-header{
+	border-bottom: none;
 }

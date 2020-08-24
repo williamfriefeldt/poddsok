@@ -3,6 +3,10 @@
 	<div ng-include="'../views/deleteInfo.html'"></div>
 	<!-- AddInfo popup -->
 	<div ng-include="'../views/addInfo.html'"></div>
+	<!-- AppInfo popup -->
+	<div ng-include="'../views/appInfo.html'"></div>
+		<!-- CookieInfo popup -->
+	<div ng-include="'../views/cookieInfo.html'"></div>
 	<!-- Show AddInfo popup -->
 	<div class="header-1">
 		<div class="offset-2 offset-sm-7 offset-md-8 offset-lg-9">
@@ -85,5 +89,14 @@
 	<div class="col-12 col-sm-6 offset-sm-3" ng-show="loading">
 		<img class="offset-5" src="/resources/gifs/loading.gif">
 	</div>
+
+	<section consent>
+	  <!-- then use your own custom markup to create the message -->
+	  <section ng-if="$consent.hasNotAgreedYet()">
+	    <p>This web application uses cookies to store private data.</p>
+	    <button ng-click="$consent.agree();">Agree</button>
+	  </section>
+  
+</section>
 
 </div>

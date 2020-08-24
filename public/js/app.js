@@ -1,5 +1,5 @@
 /* Create instance of app */
-var poddsokApp = angular.module('poddsokApp',['ngRoute','ngAnimate','ngResource','ngSanitize','firebase']);
+var poddsokApp = angular.module('poddsokApp',['ngRoute','ngAnimate','ngResource','ngSanitize', 'ngCookies','firebase']);
 
 poddsokApp.config(['$routeProvider',function($routeProvider){
 	/* Handle routes */

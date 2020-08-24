@@ -1,4 +1,4 @@
-poddsokApp.controller('MainCtrl', function ($location, $window, $scope, Model, Firebase) {
+poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies, Model, Firebase) {
 
 	var devMode = true; 
 
@@ -92,5 +92,39 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, Model, F
 	$scope.showMinText = function(ep){
 		ep.showMin = !ep.showMin;
 	};
+
+	/* Check OS to ask for app - https://stackoverflow.com/questions/21741841/detecting-ios-android-operating-system */
+	var getMobileOperatingSystem = function() {
+		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+	    // Windows Phone must come first because its UA also contains "Android"
+	    if(/windows phone/i.test(userAgent)) {
+	        return "Windows Phone";
+	    }
+
+	    if(/android/i.test(userAgent)) {
+	        return "Android";
+	    }
+
+	    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+	    if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+	    	setTimeout(function() {
+	    		$("#showAppInfo").modal("show");
+	    	}, 500);
+	    	$cookies.put( 'hideAppInfo', true );
+	        return;
+	    }
+
+	    return;
+	}
+
+	if( $cookies.get( 'hideAppInfo' ) !== "true" ) {
+		getMobileOperatingSystem();
+	}
+
+	setTimeout( function() {
+			$("#showCookieInfo").modal({backdrop:false});
+		}, 500);
+
   	
 });
