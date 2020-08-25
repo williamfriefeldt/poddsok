@@ -31,7 +31,7 @@
           <div class="form-group">
             <input ng-keydown="input.text=false; input.send=false" type="text" class="dropdown-toggle modal-input" id="formTime" ng-model="minText" placeholder="Tid..." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-disabled="!input.min">
             <div class="dropdown-menu" aria-labelledby="formTime">
-              <a ng-repeat="i in time | filter:stripMin(minText) | filter:query as res3" ng-click="chooseTime(i)" class="click dropdown-item">{{i}} minuter</a>
+              <a ng-repeat="i in time | filter:stripMin(minText) | filter:query as res3" ng-click="chooseTime(i)" class="click dropdown-item">{{i}} <span ng-if="i !== 1">minuter</span><span ng-if="i === 1">minut</span></a>
               <a ng-show="!res3.length" class="dropdown-item">Tiden finns inte...</a>
             </div>
           </div>

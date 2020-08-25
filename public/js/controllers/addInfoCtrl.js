@@ -57,7 +57,7 @@ poddsokApp.controller('AddInfoCtrl', function ($scope, Model) {
 	/* Set choosen time */
 	$scope.chooseTime = function(i){
 		if(i === 1) {
-			$scope.minText = " minut";
+			$scope.minText = "1 minut";
 		} else {
 			$scope.minText=i+" minuter";		
 		}
