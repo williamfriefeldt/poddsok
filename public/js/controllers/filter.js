@@ -1,28 +1,24 @@
 poddsokApp.filter('segmentFilter', function() {
-   return function(input, searchText){
-        if( searchText.text != undefined  || searchText.text === '') {
-            var searchTextSplit = searchText.text.toLowerCase().split(' ');
-            var search = function( input, searchArray, count ) {
-                var newArray = [];
-                if( input != undefined ) {
-                    input.forEach(function(segment) {
-                        segment.minutes.forEach(function(min) {
-                            if( min.text.toLowerCase().includes(searchArray[count]) ) {
-                                newArray.push(segment);
+    return function (input, searchText) {
+        var returnArray = [];
+        if(searchText.minutes.text !== undefined){
+            // Split on single or multi space
+            var splitext = searchText.minutes.text.toLowerCase().split(/\s+/);
+            // Build Regexp with logicial ND
+            var regexp_and = "(?=.*" + splitext.join(")(?=.*") + ")";
+            // Compile the regular expression
+            var re = new RegExp(regexp_and, "i");
+            for (var x = 0; x < input.length; x++) {
+                if(input[x].minutes !== undefined) {
+                    input[x].minutes = input[x].minutes.filter(function(y){
+                            if (re.test(y.text)) {
+                                return y;
                             }
-                        });
-                    });
-                } 
-                if( count === searchArray.length - 1 ) {
-                    return newArray;  
-                } else {
-                    count++;
-                    return search( newArray, searchArray, count);                        
+                    })
+                    if(input[x].minutes.length !== 0) returnArray.push(input[x]);
                 }
-            };
-            var count = 0;
-            var returnArray = search( input, searchTextSplit, count );
-            return returnArray;
+            }
         }
+        return returnArray;  
     }
 });

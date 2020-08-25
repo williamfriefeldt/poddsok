@@ -59,7 +59,9 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 
 	/* Makes search word bold */
 	$scope.boldSearch = function(text,search){
-		var boldSearch = text.match(new RegExp(search,'i'))[0];
+		var splitext = search.toLowerCase().split(/\s+/);
+        var regexp_and = "(?=.*" + splitext.join(")(?=.*") + ")";
+		var boldSearch = text.match(new RegExp(regexp_and,'i'))[0];
 		text = text.replace(boldSearch,"<div class='search-word inline'><strong>"+boldSearch+'</strong></div>');
 		return text;
 	};
