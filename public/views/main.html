@@ -3,10 +3,10 @@
 	<div ng-include="'../views/deleteInfo.html'"></div>
 	<!-- AddInfo popup -->
 	<div ng-include="'../views/addInfo.html'"></div>
+	<!-- CookieInfo popup -->
+	<div ng-include="'../views/cookieInfo.html'"></div>
 	<!-- AppInfo popup -->
 	<div ng-include="'../views/appInfo.html'"></div>
-		<!-- CookieInfo popup -->
-	<div ng-include="'../views/cookieInfo.html'"></div>
 	<!-- Show AddInfo popup -->
 	<div class="header-1">
 		<div class="offset-2 offset-sm-7 offset-md-8 offset-lg-9">
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<h1 class="offset-1 col-10">poddsök.nu</h1>
-		<p class="center infoText" ng-if="infoText"> {{ infoText }}</p>
+		<p class="center infoText" ng-if="infoText && !podcastInfo"> {{ infoText }}</p>
 	</div>
 	<!-- Display podcasts -->
 	<div class="row pod-show-hide" ng-show="!podShow">

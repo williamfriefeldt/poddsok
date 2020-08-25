@@ -259,10 +259,19 @@ p{
 	width: 100%;
 }
 .cookie-consent {
-	top: 75%;
-	left: 50%;
-	opacity: 1;
+	position: absolute;
+    left: 3%;
+    height: 70px;
+    width: 300px;
 }
 .cookie-consent-header{
 	border-bottom: none;
+	font-size: 20px;
 }
+.cookie-consent-header .close{
+	margin-top: -0.5em;
+}
+.cookie-consent-content{
+	height: 67.5px;
+}
+

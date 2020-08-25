@@ -28,6 +28,7 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 	$scope.showPod = function(){
 		if( $scope.infoText === 'Sök efter ord eller mening' ) {
 			$scope.infoText = false;
+			$cookies.put( 'podcastInfo', true );
 		}
 		$scope.searchpodd='';
 		$scope.podShow = !$scope.podShow;
@@ -44,6 +45,7 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 			$scope.infoText = 'Sök efter ord eller mening';
 		} else {
 			$scope.infoText = false;
+			$cookies.put( 'podcastInfo', true );
 		}
 		$scope.loading=true;
 		$scope.searchep='';
@@ -118,13 +120,20 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 	    return;
 	}
 
+	/* Handle cookies*/
+
+	$scope.podcastInfo = $cookies.get( 'podcastInfo' );
+
 	if( $cookies.get( 'hideAppInfo' ) !== "true" ) {
 		getMobileOperatingSystem();
 	}
 
-	setTimeout( function() {
-			$("#showCookieInfo").modal({backdrop:false});
+	if( $cookies.get( 'cookieInfo' ) !== "true" ) {
+		setTimeout( function() {
+			$("#showCookieInfo").modal();
+			$(".modal-backdrop").css("background-color", "transparent");
+			$cookies.put( 'cookieInfo', true );
 		}, 500);
-
+	}
   	
 });
