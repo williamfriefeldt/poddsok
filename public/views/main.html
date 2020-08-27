@@ -68,7 +68,7 @@
 						</div>
 						<h2 class="pod-name" ng-class="{'pod-title-up':searchep}"><a class="play" href="{{episode.link}}" ng-show="searchep || episode.showMin"><i class="fa fa-play-circle"></i></a>{{episode.nr}}. {{episode.name}}</h2>
 						<!-- Display info in each episode -->
-						<div ng-show="searchep || episode.showMin" ng-repeat="minute in filtered = (episode.minutes | filter:{text:searchep} | orderBy:'nr')" ng-if="minute.text != ''" class="row pod-show-hide">
+						<div ng-show="searchep || episode.showMin" ng-repeat="minute in filtered = (episode.minutes | minuteFilter:searchep | orderBy:'nr')" ng-if="minute.text != ''" class="row pod-show-hide">
 							<p class='col-10 col-lg-11 inline'>{{minute.nr}} minuter: "<span class='inline' ng-bind-html="boldSearch(minute.text,searchep)"></span>"
 							</p>
 							<!-- Delete episode info -->
