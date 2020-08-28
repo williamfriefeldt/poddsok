@@ -59,17 +59,16 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 
 	/* Makes search word bold */
 	$scope.boldSearch = function(text,search){
-		 var splitext = search.toLowerCase().split(/\s+/);
-		// for(var i = 0; i < splitext.length; i++){
-		// 	var boldSearch = text.match(new RegExp(splitext[i],'i'))[0];
-		// 	text = text.replace(boldSearch,"<div class='search-word inline'><strong>"+boldSearch+"</strong></div>");
-		// }
+		var splitext = search.toLowerCase().split(/\s+/);
 		for(var i = 0; i < splitext.length; i++){
-			var bold = text.toLowerCase().match(RegExp(splitext[i], 'i'));
-			text = text.toLowerCase().replace( bold, '<strong>'+bold+'</strong>')
+			var bold = text.toLowerCase().match(RegExp(/splitext[i]/, 'i'));
+			if( splitext[i] !== '') text = text.toLowerCase().replace( bold, '\-\_'+bold+'\_\-');
+		}
+		if( search ) {
+			text = text.replace( new RegExp('\-\_', 'g'), '<strong>');
+			text = text.replace( new RegExp('\_\-', 'g'), '</strong>');
 		}
 		return text;
-		//return text;
 	};
 
 	/* Set object with delete info */
