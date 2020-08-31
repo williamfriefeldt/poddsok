@@ -51,6 +51,8 @@ poddsokApp.factory('Model',function($q,Firebase){
 						episodes[i]['epTxt'] = false;
 					}
 					episodes[i]['showMin']=false;
+				}else{
+					episodes.pop();
 				}
 			}
 			def.resolve(); 
