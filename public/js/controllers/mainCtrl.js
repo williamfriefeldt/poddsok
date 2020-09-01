@@ -49,6 +49,7 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 		}
 		$scope.loading=true;
 		$scope.searchep='';
+		Firebase.trackPod( pod.title );
 		Model.getEpisodes(pod.title).then(function(){
 			$scope.episodes=Model.getEps();
 			$scope.pod=pod;

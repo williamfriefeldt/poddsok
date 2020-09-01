@@ -2,12 +2,19 @@ poddsokApp.factory('Firebase', function ($q) {
 
 	/* Poddsök firebase setup */
 	var config = {
-	  apiKey: "AIzaSyC3Jx94GLlQlmMd36cFYonw2MrfTXf4YPE",
-	  authDomain: "poddsok.firebaseapp.com",
-	  databaseURL: "https://poddsok.firebaseio.com"
+	    apiKey: "AIzaSyC3Jx94GLlQlmMd36cFYonw2MrfTXf4YPE",
+	    authDomain: "poddsok.firebaseapp.com",
+	    databaseURL: "https://poddsok.firebaseio.com",
+	    projectId: "poddsok",
+	    storageBucket: "poddsok.appspot.com",
+	    messagingSenderId: "621533942583",
+	    appId: "1:621533942583:web:f4b8822a1fdb41470e00b2",
+	    measurementId: "G-L7RKMPYTB6"
 	};
 
 	firebase.initializeApp(config);
+
+	var analytics = firebase.analytics();	
 
 	/* Get episodes from firebase for given pod*/
 	this.getEpisodes = function(pod){
@@ -56,6 +63,12 @@ poddsokApp.factory('Firebase', function ($q) {
 		});
 		return def.promise;
 	};
+
+	/* Google Analytics */
+
+	this.trackPod = function(podcast){
+		analytics.logEvent('podcast', {name: podcast});
+	}
 
 	return this;
 });
