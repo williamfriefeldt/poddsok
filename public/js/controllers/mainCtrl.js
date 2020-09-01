@@ -59,14 +59,11 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 
 	/* Makes search word bold */
 	$scope.boldSearch = function(text,search){
-		var splitext = search.toLowerCase().split(/\s+/);
+		var splitext = search.split(/\s+/);
 		for(var i = 0; i < splitext.length; i++){
-			var bold = text.toLowerCase().match(RegExp(/splitext[i]/, 'i'));
-			if( splitext[i] !== '') text = text.toLowerCase().replace( bold, '\-\_'+bold+'\_\-');
-		}
-		if( search ) {
-			text = text.replace( new RegExp('\-\_', 'g'), '<strong>');
-			text = text.replace( new RegExp('\_\-', 'g'), '</strong>');
+			var bold = text.match(RegExp(splitext[i], 'i'));
+			if( !text.match(/<+[^<]+>/) || !text.match(/<+[^<]+>/)[0].includes(bold) )
+			text = text.replace( bold, '<strong>'+bold+'</strong>')
 		}
 		return text;
 	};

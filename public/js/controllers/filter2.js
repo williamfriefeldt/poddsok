@@ -19,7 +19,7 @@ poddsokApp.filter('minuteFilter', function() {
                 }
             }
         }
-        if(searchText == '') return input;
+        if(searchText === '') return input;
         return returnArray;  
     }
 });
