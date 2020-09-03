@@ -57,7 +57,7 @@
       <!-- Submit info -->
       <div class="modal-footer">
         <button ng-if="minInfo.status" type="button" class="btn btn-primary btn-send" ng-click="send(true)">{{minInfo.btnText}}</button>
-        <button type="button" class="btn btn-primary btn-send" ng-click="send(); getEpisodes(podTitle)" ng-disabled="!input.send || !text || loadSend" >{{sendText}}</button>
+        <button type="button" class="btn btn-primary btn-send" ng-click="send(); getEpisodes(podTitle); trackEvent( 'AddInfo-send' )" ng-disabled="!input.send || !text || loadSend" >{{sendText}}</button>
       </div>
     </div>
   </div>

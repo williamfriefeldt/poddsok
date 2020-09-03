@@ -14,7 +14,7 @@
       </div>
       <!-- Delete info submit -->
       <div class="modal-footer" ng-show="!sent">
-        <button type="button" class="btn btn-primary btn-send" ng-click="sendDeleteInfo(deleteInfo)">Stämmer ej</button>
+        <button type="button" class="btn btn-primary btn-send" ng-click="sendDeleteInfo(deleteInfo); trackEvent( 'DeleteInfo-send' )">Stämmer ej</button>
       </div>
       <!-- Submit text -->
       <div ng-show="sent">

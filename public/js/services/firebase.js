@@ -41,7 +41,7 @@ poddsokApp.factory('Firebase', function ($q) {
 	  	return firebase.database().ref().update(updates);
 	};
 
-	/* Updates delete info on given episode - in value == 3, delete episode info */
+	/* Updates delete info on given episode - if value == 3, delete episode info */
 	this.setDeleteVal = function(data){
 		var def = $q.defer();
 		firebase.database().ref('/'+data.pod+'/ep'+data.ep.nr+'/minutes/min'+data.min.nr+'/').once('value').then(function(snapshot) {
@@ -65,9 +65,12 @@ poddsokApp.factory('Firebase', function ($q) {
 	};
 
 	/* Google Analytics */
-
 	this.trackPod = function(podcast){
-		analytics.logEvent('podcast', {name: podcast});
+		analytics.logEvent(podcast);
+	}
+
+	this.trackEvent = function(event){
+		analytics.logEvent(event);
 	}
 
 	return this;

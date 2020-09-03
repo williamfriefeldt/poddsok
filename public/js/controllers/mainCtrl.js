@@ -49,7 +49,7 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 		}
 		$scope.loading=true;
 		$scope.searchep='';
-		Firebase.trackPod( pod.title );
+		Firebase.trackPod( pod.info.name );
 		Model.getEpisodes(pod.title).then(function(){
 			$scope.episodes=Model.getEps();
 			$scope.pod=pod;
@@ -141,4 +141,10 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 		}, 500);
 	}
   	
+	/* Google Analytics */
+
+  	$scope.trackEvent = function(event) {
+  		Firebase.trackEvent(event)
+  	}
+
 });

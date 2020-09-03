@@ -11,8 +11,8 @@
 	<div class="header-1">
 		<div class="offset-2 offset-sm-7 offset-md-8 offset-lg-9">
 			<div class="row">
-				<a class="col-5 col-sm-7 menu" data-toggle="modal" data-target="#showAddInfo">Lägg till</a>
-				<a href="/#!/om" class="col-4 col-sm-4 menu">Om</a>
+				<a class="col-5 col-sm-7 menu" data-toggle="modal" data-target="#showAddInfo" ng-click="trackEvent( 'AddInfo-open' )">Lägg till</a>
+				<a href="/#!/om" class="col-4 col-sm-4 menu" ng-click="trackEvent( 'About' )">Om</a>
 			</div>
 		</div>
 		<h1 class="offset-1 col-10">poddsök.nu</h1>
@@ -72,7 +72,7 @@
 							<p class='col-10 col-lg-11 inline'>{{minute.nr}} minuter: "<span class='inline' ng-bind-html="boldSearch(minute.text,searchep)"></span>"
 							</p>
 							<!-- Delete episode info -->
-							<i class="col-2 col-lg-1 delete-icon fas fa-exclamation-circle" data-toggle="modal" data-target="#showDeleteInfo" ng-click="setDeleteInfo(minute,episode)"></i>
+							<i class="col-2 col-lg-1 delete-icon fas fa-exclamation-circle" data-toggle="modal" data-target="#showDeleteInfo" ng-click="setDeleteInfo(minute,episode); trackEvent( 'DeleteInfo-open' )"></i>
 						</div>
 					</div>
 				</div>
