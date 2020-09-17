@@ -142,9 +142,9 @@ poddsokApp.controller('MainCtrl', function ($location, $window, $scope, $cookies
 	}
   	
 	/* Google Analytics */
-
+	
   	$scope.trackEvent = function(event) {
-  		Firebase.trackEvent(event)
-  	}
+  		Firebase.trackEvent(event)  	
+  	};
 
 });
