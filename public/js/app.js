@@ -1,7 +1,12 @@
-/* Create instance of app */
-var poddsokApp = angular.module('poddsokApp',['ngRoute','ngAnimate','ngResource','ngSanitize', 'ngCookies','firebase']);
+/**
+ * @description - Initialize app with all necessary libraries
+ */
+var poddsokApp = angular.module( 'poddsokApp', [ 'ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'ngCookies', 'firebase' ]);
 
-poddsokApp.config(['$routeProvider',function($routeProvider){
+/**
+ * @description - Handle routing
+ */
+poddsokApp.config( [ '$routeProvider', ( $routeProvider ) => {
 	/* Handle routes */
 	$routeProvider.
 		when('/',{
@@ -16,8 +21,9 @@ poddsokApp.config(['$routeProvider',function($routeProvider){
 		});
 }]);
 
-
-/* Make spotify uri safe */
-poddsokApp.config(function ($compileProvider) {
-	$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|spotify):/);
+/**
+ * @description - Accept 
+ */
+poddsokApp.config( ( $compileProvider ) => {
+	$compileProvider.aHrefSanitizationWhitelist( /^\s*(https?|ftp|mailto|chrome-extension|spotify):/ );
 });

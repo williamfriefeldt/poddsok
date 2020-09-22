@@ -1,77 +1,105 @@
-poddsokApp.factory('Firebase', function ($q) {
+poddsokApp.factory( 'Firebase', ( $q ) => {
 
-	/* Poddsök firebase setup */
+	/**
+	 * @description - Firebase setup 
+	 */
 	var config = {
-	    apiKey: "AIzaSyC3Jx94GLlQlmMd36cFYonw2MrfTXf4YPE",
-	    authDomain: "poddsok.firebaseapp.com",
-	    databaseURL: "https://poddsok.firebaseio.com",
-	    projectId: "poddsok",
-	    storageBucket: "poddsok.appspot.com",
-	    messagingSenderId: "621533942583",
-	    appId: "1:621533942583:web:f4b8822a1fdb41470e00b2",
-	    measurementId: "G-L7RKMPYTB6"
+        apiKey:            "AIzaSyC3Jx94GLlQlmMd36cFYonw2MrfTXf4YPE",
+        authDomain:        "poddsok.firebaseapp.com",
+        databaseURL:       "https://poddsok.firebaseio.com",
+        projectId:         "poddsok",
+        storageBucket:     "poddsok.appspot.com",
+        messagingSenderId: "621533942583",
+        appId:             "1:621533942583:web:f4b8822a1fdb41470e00b2",
+        measurementId:     "G-L7RKMPYTB6"
 	};
 
-	firebase.initializeApp(config);
-
+	/**
+	 * @description - Initialize Firebase ang Google Analytics
+	 */
+	firebase.initializeApp( config );
 	var analytics = firebase.analytics();	
 
-	/* Get episodes from firebase for given pod*/
-	this.getEpisodes = function(pod){
+	/**
+	 * @description - Get episodes from Firebase for given podcast
+	 * @param { string } - Title of given podcast
+	 * @return { promise } - A promise that resolves in the episodes
+	 */
+	this.getEpisodes = ( pod ) => {
 		var def = $q.defer();
-		firebase.database().ref('/'+pod+'/').once('value').then(function(snapshot) {
-			def.resolve(snapshot.val());
+		firebase.database().ref( '/' + pod + '/' ).once( 'value' ).then( ( snapshot ) => {
+			def.resolve( snapshot.val() );
 		});
 		return def.promise;
 	};
 
-	/* Get podcasts from firebase */
-	this.getPodcasts = function(){
+	/**
+	 * @description - Get all podcasts from Firebase
+	 * @param { string } - Title of given podcast
+	 * @return { promise } - A promise that resolves in the episodes
+	 */
+	this.getPodcasts = () => {
 		var def = $q.defer();
-		firebase.database().ref('/').once('value').then(function(snapshot) {
-			def.resolve(snapshot.val());
+		firebase.database().ref( '/' ).once( 'value' ).then( ( snapshot ) => {
+			def.resolve( snapshot.val() );
 		});
 		return def.promise;
 	};
 
-	/* Add new episode info to firebase */
-	this.setEpInfo = function(data){
+	/**
+	 * @description - Add text and minute for given episode to Firebase 
+	 * @param { object } - 
+	 */
+	this.setEpInfo = ( data ) => {
 	  	var updates = {};
-	  	updates['/'+data.podcast+'/ep'+data.episode+'/minutes/'] = data.minutes;
-	  	return firebase.database().ref().update(updates);
+	  	updates['/' + data.podcast + '/ep' + data.episode + '/minutes/'] = data.minutes;
+	  	return firebase.database().ref().update( updates );
 	};
 
-	/* Updates delete info on given episode - if value == 3, delete episode info */
-	this.setDeleteVal = function(data){
+	/**
+	 * @description - Updates delete info on given episode - if value == 3, delete episode info 
+	 * @param { object } - Info about podcast and episode that should be updated with delete info
+	 * @returns { promise } - Promise that resolves in updated info
+	 */
+	this.setDeleteVal = ( data ) => {
 		var def = $q.defer();
-		firebase.database().ref('/'+data.pod+'/ep'+data.ep.nr+'/minutes/min'+data.min.nr+'/').once('value').then(function(snapshot) {
+		var refQuery = '/' + data.pod + '/ep' + data.ep.nr + '/minutes/min' + data.min.nr + '/';
+		firebase.database().ref(  ).once( 'value' ).then( ( snapshot ) => {
 			var res = snapshot.val();
 			var updates = {};
-			if(res.deleteVal){
-				deleteStatus=res.deleteVal+1;
-			}else{
-				deleteStatus=1;
+			if( res.deleteVal ) {
+				deleteStatus = res.deleteVal + 1;
+			} else {
+				deleteStatus = 1;
 			}
-			if(deleteStatus == 3){
-				updates['/'+data.pod+'/ep'+data.ep.nr+'/minutes/min'+data.min.nr+'/'] = {nr:data.min.nr,text:""};
-			}else{
-				var addDeleteVal = {nr:res.nr,text:res.text,deleteVal:deleteStatus};
-	  			updates['/'+data.pod+'/ep'+data.ep.nr+'/minutes/min'+data.min.nr+'/'] = addDeleteVal;
+			if( deleteStatus == 3 ) {
+				updates['/' + data.pod + '/ep' + data.ep.nr + '/minutes/min' + data.min.nr + '/'] = { nr: data.min.nr, text: "" };
+			} else {
+				var addDeleteVal = { nr: res.nr, text: res.text, deleteVal: deleteStatus };
+	  			updates['/' + data.pod + '/ep' + data.ep.nr + '/minutes/min' + data.min.nr + '/'] = addDeleteVal;
 	  		}
-	  		firebase.database().ref().update(updates);
-	  		def.resolve('sent');
+	  		firebase.database().ref().update( updates );
+	  		def.resolve( 'sent' );
 		});
 		return def.promise;
 	};
 
-	/* Google Analytics */
-	this.trackPod = function(podcast){
-		analytics.logEvent(podcast);
+	/**
+	 * @description - Send info to Google Analytics about podcast 
+	 * @param { string } - Name of podcast
+	 */
+	this.trackPod = ( podcast ) => {
+		analytics.logEvent( podcast );
 	}
 
-	this.trackEvent = function(event){
-		analytics.logEvent(event);
+	/**
+	 * @description - Send info to Google Analytics about user navigation
+	 * @param { string } - Name of page event
+	 */
+	this.trackEvent = ( event ) => {
+		analytics.logEvent( event );
 	}
 
 	return this;
+	
 });

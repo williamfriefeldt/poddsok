@@ -1,11 +1,24 @@
-poddsokApp.factory('Model',function($q,Firebase){
+poddsokApp.factory( 'Model', ( $q, Firebase ) => {
 
-	/* Get all podcasts */
-	this.getPods = function(){
+	/**
+	 * @description - Set intial values of variables
+	 */
+	var episodes = [];
+	var podcasts = [];
+
+	/**
+	 * @description - Get all podcasts 
+	 * @return { array } - All podcasts
+	 */
+	this.getPods = () => {
 		return podcasts;
 	};
 
-	this.getPodcasts = function() {
+	/**
+	 * @description - Get all podcasts from Firebase
+	 * @return { promise } - Promise that resolves in all podcasts
+	 */
+	this.getPodcasts = () => {
 		var def = $q.defer();
 		if( podcasts.length === 0 ) {
 			Firebase.getPodcasts().then(function(data){
@@ -29,20 +42,27 @@ poddsokApp.factory('Model',function($q,Firebase){
 		return def.promise;
 	}
 
-	/* Get all podcasts */
-	this.getEps = function(){
+	/**
+	 * @description - Get all episodes 
+	 * @return { array } - All episodes for current podcast
+	 */
+	this.getEps = () => {
 		return episodes;
 	}
 
-	/* Get episode from given podcast frome firebase - store in var episodes */
-	this.getEpisodes=function(pod){
+	/**
+	 * @description - Get episode from given podcast frome Firebase 
+	 * @param { string } - Title for given podcast
+	 * @return { promise } - Promise that resolves in episodes
+	 */
+	this.getEpisodes = ( pod ) => {
 		var def = $q.defer();
-		Firebase.getEpisodes(pod).then(function(data){
-			episodes=Object.values(data);
-			for(var i=0;i<episodes.length;i++){
-				if( episodes[i].minutes !== undefined) { 
-					episodes[i].minutes=Object.values(episodes[i].minutes);
-					var epsWithTxt = episodes[i].minutes.find(function(ep) {
+		Firebase.getEpisodes( pod ).then( ( data ) => {
+			episodes = Object.values( data );
+			for( var i = 0; i < episodes.length; i++ ) {
+				if( episodes[i].minutes !== undefined ) { 
+					episodes[i].minutes = Object.values( episodes[i].minutes );
+					var epsWithTxt = episodes[i].minutes.find( ( ep ) => {
 						if( ep.text !== '' ) return true;
 					});
 					if( epsWithTxt ) {
@@ -50,7 +70,7 @@ poddsokApp.factory('Model',function($q,Firebase){
 					} else {
 						episodes[i]['epTxt'] = false;
 					}
-					episodes[i]['showMin']=false;
+					episodes[i]['showMin'] = false;
 				}else{
 					episodes.pop();
 				}
@@ -60,23 +80,26 @@ poddsokApp.factory('Model',function($q,Firebase){
 		return def.promise;
 	};
 
-	/* Set new episode info to firebase through firebase service */
-	this.addEpInfo=function(pod,ep,minutes){
+	/**
+	 * @description - Set text-info for given episode at specified minute
+	 * @param { object } - Given podcast
+	 * @param { string } - Number of episode
+	 * @param { object } - All minutes and texts for given episode 
+	 * @return { promise } - Promise that resolves in episodes
+	 */
+	this.addEpInfo = ( pod, ep, minutes ) => {
 		var def = $q.defer();
-		var data ={
-			podcast:pod.title,
-			episode:ep,
-			minutes:minutes
+		var data = {
+			podcast: pod.title,
+			episode: ep,
+			minutes: minutes
 		}
-		Firebase.setEpInfo(data).then(function(){
+		Firebase.setEpInfo( data ).then( () => {
 			def.resolve();
 		});
 		return def.promise;
 	};
 
-	/* Local variables for episodes and podcasts */
-	var episodes= [];
-	var podcasts = [];
-
 	return this;
+	
 });
