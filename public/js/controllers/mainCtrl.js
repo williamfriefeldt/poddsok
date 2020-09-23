@@ -1,4 +1,4 @@
-poddsokApp.controller( 'MainCtrl', ( $location, $window, $scope, $cookies, Model, Firebase ) => {
+poddsokApp.controller( 'MainCtrl', function( $location, $window, $scope, $cookies, Model, Firebase ) {
 
 	/**
 	 * @description - If not devMode => redirect user to secure URL (https)
@@ -7,7 +7,7 @@ poddsokApp.controller( 'MainCtrl', ( $location, $window, $scope, $cookies, Model
 
 	if( devMode === false ) {
 		if ($location.protocol() !== 'https') {
-	        $window.location.href = $location.absUrl().replace('http', 'https');
+	        $window.location.href = $location.absUrl().replace( 'http', 'https' );
 	    }
 	}
 

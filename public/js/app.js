@@ -6,7 +6,7 @@ var poddsokApp = angular.module( 'poddsokApp', [ 'ngRoute', 'ngAnimate', 'ngReso
 /**
  * @description - Handle routing
  */
-poddsokApp.config( [ '$routeProvider', ( $routeProvider ) => {
+poddsokApp.config( [ '$routeProvider', function( $routeProvider ) {
 	/* Handle routes */
 	$routeProvider.
 		when('/',{

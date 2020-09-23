@@ -1,65 +1,65 @@
 /* --- Mobile settings --- */
-@media (max-width: 980px){
+@media ( max-width: 980px ){
 	.modal-dialog {
-   		max-width: 75% !important;
-    	margin: 1.75rem auto;
+   		max-width : 75% !important;
+   		margin    : 1.75rem auto;
     }
 }
-@media (min-height: 1700px){
+@media ( min-height: 1700px ){
 	.scroll {
-		max-height: calc(100vh - 225px) !important;
+		max-height: calc( 100vh - 225px ) !important;
 	} 
 }
 
 /* --- General --- */
 body{
-	background-color: #320E44;
-	color:white;
-	font-family: 'Montserrat', sans-serif;
-	overflow-y: hidden;
+    background-color : #320E44;
+    color            : white;
+    font-family      : 'Montserrat', sans-serif;
+    overflow-y       : hidden;
 }
 h1{
-	font-size: 55px;
-	text-align: center;
-	margin-bottom: 2%;
+	font-size     : 55px;
+	text-align    : center;
+	margin-bottom : 2%;
 }
 h2{
 	font-size: 35px;
 }
 a{
-	color: white;
-	font-size: 30px;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
+	color         : white;
+	font-size     : 30px;
+	text-overflow : ellipsis;
+	overflow      : hidden;
+	white-space   : nowrap;
 } 
 a:hover{
-	font-size: 32.5px;
-	color: white;
+	font-size : 32.5px;
+	color     : white;
 }
 input{
-	width: 100%;
-	border-radius: 17.5px;
-	border:none;
-	font-size: 30px;
-	position: center;
-	color:grey;
-	margin-bottom: 4%;
+	width         : 100%;
+	border-radius : 17.5px;
+	border        : none;
+	font-size     : 30px;
+	position      : center;
+	color         : grey;
+	margin-bottom : 4%;
 }
-label,textarea{
-	font-size: 30px !important;
-    -webkit-box-shadow: none !important;
+label, textarea{
+	font-size          : 30px !important;
+	-webkit-box-shadow : none !important;
 }
 .btn{
-	background-color: #320E44;
-	font-size: 35px;
+	background-color : #320E44;
+	font-size        : 35px;
 }
 .btn[disabled]{
 	background-color: #320E44;
 }
 .btn-send:focus{
-	outline:0;
-	background-color: #320E44;
+	outline          : 0;
+	background-color : #320E44;
 }
 input[placeholder]{
 	padding-left: 7.5%;
@@ -68,17 +68,17 @@ input:focus{
 	outline: none;
 }
 img{
-	width:85px;
-	height:85px;
-	border-radius:25px 25px 25px 25px;
+	width         : 85px;
+	height        : 85px;
+	border-radius : 25px 25px 25px 25px;
 }
 p{
-	font-size: 25px;
-	margin-bottom: 0;
+    font-size     : 25px;
+    margin-bottom : 0;
 }
 .infoText {
-	margin-top: -30px;
-	font-size: 20px;
+    margin-top : -30px;
+    font-size  : 20px;
 }
 .header-1 {
 	height: 160px;
@@ -90,11 +90,11 @@ p{
 	text-align: center;
 }
 .inline{
-	display:inline;
+	display: inline;
 }
 .close{
-	font-size: 50px;
-	outline: none;
+	font-size : 50px;
+	outline   : none;
 }
 .close:focus{
 	outline: none;
@@ -103,21 +103,21 @@ p{
 	cursor: pointer;
 }
 .scroll{
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch; 
-	max-height: calc(100vh - 225px);
+	overflow-y                 : scroll;
+	-webkit-overflow-scrolling : touch;
+	max-height                 : calc( 100vh - 225px );
 }
 ::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width      : 0px;  		   /* Remove scrollbar space */
+    background : transparent;  /* Optional: just make scrollbar invisible */
 }
 .back{
-	font-size:48.5px;
-	float: right;
+	font-size : 48.5px;
+	float     : right;
 }
 .sort{
-	font-size: 48.5px;
-	margin-left: 30px;
+	font-size   : 48.5px;
+	margin-left : 30px;
 }
 .col-lg-1{
 	padding-left: 0 !important;
@@ -128,33 +128,33 @@ p{
  	transition: all linear 1s;
 }
 .pod-show-hide.ng-hide {
- 	opacity: 0;
- 	transition: none;
+ 	opacity    : 0;
+ 	transition : none;
 }
 .pod{
-	margin-bottom:1.25%;
-	background-color: #431651;
-	border-radius:25px 25px 25px 25px;
+	margin-bottom    : 1.25%;
+	background-color : #431651;
+	border-radius    : 25px 25px 25px 25px;
 }
 .pod-name{
-	margin-top: 3%;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-	padding-left:40px;
-	margin-bottom: 25px;
+	margin-top    : 3%;
+	text-overflow : ellipsis;
+	overflow      : hidden;
+	white-space   : nowrap;
+	padding-left  : 40px;
+	margin-bottom : 25px;
 }
 
 /* --- Menu --- */
 .menu{
-	text-align: center;
-	font-size: 27.5px;
-	cursor: pointer;
-	background-color: #431651;
-	border-radius:25px 25px 25px 25px;
-	margin-top: 3%;
-	margin-right: 3%;
-	color: white;
+	text-align       : center;
+	font-size        : 27.5px;
+	cursor           : pointer;
+	background-color : #431651;
+	border-radius    : 25px 25px 25px 25px;
+	margin-top       : 3%;
+	margin-right     : 3%;
+	color            : white;
 }
 .menu:hover{
 	text-decoration: none;
@@ -163,36 +163,36 @@ p{
 
 /* --- Modal (pop-up) --- */
 .modal{
-	color: #431651;
-	border:25px;
+	color  : #431651;
+	border : 25px;
 }
 .modal-content{
 	border-radius:2rem;
 }
 .modal-input{
-	border-bottom:2px solid #431651;
-	border-radius: 0;
+	border-bottom : 2px solid #431651;
+	border-radius : 0;
 }
 .modal-input[placeholder]{
-	padding-left:3% !important;
+	padding-left: 3% !important;
 
 }
 .modal-dialog{
 	max-width: 60%;
 }
 .sent{
-	height:200px;
+	height: 200px;
 }
 .modal-input[disabled], label[disabled]{
 	opacity: 0.5;
 }
 .error-text{
-	color:red;
+	color: red;
 }
 .dropdown-menu{
-	max-height: 30vh;
-	overflow-y: scroll;
-	width: 80%;
+	max-height : 30vh;
+	overflow-y : scroll;
+	width      : 80%;
 }
 /* --- Episode info --- */
 .min-text{
@@ -205,68 +205,68 @@ p{
 	margin-top: 3%;
 }
 .delete-icon{
-	font-size: 32px;
-	transition: all linear 0.25s;
+	font-size  : 32px;
+	transition : all linear 0.25s;
 }
 .delete-icon.ng-hide{
-	opacity: 0;
- 	transition: none;
+	opacity    : 0;
+	transition : none;
 }
 .delete-icon:hover{
-	font-size: 35px;
-	cursor: pointer;
+	font-size : 35px;
+	cursor    : pointer;
 }
 .eptext-show{
-	float:right;
-	padding: 2%;
+	float   : right;
+	padding : 2%;
 }
 
 /* --- About-view --- */
 .about{
-	font-size: 30px;
-	margin-top: 3%;
-	max-height: 80vh;
-	overflow-y: auto;
+	font-size  : 30px;
+	margin-top : 3%;
+	max-height : 80vh;
+	overflow-y : auto;
 }
 .about a{
 	cursor: pointer;
 }
 .about-img{
-	height: 250px;
-	width: 250px;
-	border-radius: 50%; 
-	margin-top: 2.5%;
+	height        : 250px;
+	width         : 250px;
+	border-radius : 50%;
+	margin-top    : 2.5%;
 }
 .about-icon{
-	text-align: center;
-	margin-top:3%;
-	font-size: 40px;
+	text-align : center;
+	margin-top : 3%;
+	font-size  : 40px;
 }
 .about-icon:hover{
 	font-size: 45px;
 }
 .play{
-	padding-right:15px;
+	padding-right: 15px;
 }
 .app-icon {
-	margin-left: auto;
-  	margin-right: auto;
-  	display: block;
-  	margin-top: 2%;
-  	color: #320E44;
+	margin-left  : auto;
+	margin-right : auto;
+	display      : block;
+	margin-top   : 2%;
+	color        : #320E44;
 }
 .app-info-title{
 	width: 100%;
 }
 .cookie-consent {
-	position: absolute;
-    left: 3%;
-    height: 70px;
-    width: 300px;
+	position : absolute;
+	left     : 3%;
+	height   : 70px;
+	width    : 300px;
 }
 .cookie-consent-header{
-	border-bottom: none;
-	font-size: 20px;
+	border-bottom : none;
+	font-size     : 20px;
 }
 .cookie-consent-header .close{
 	margin-top: -0.5em;

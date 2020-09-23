@@ -1,4 +1,4 @@
-poddsokApp.factory( 'Model', ( $q, Firebase ) => {
+poddsokApp.factory( 'Model', function( $q, Firebase ) {
 
 	/**
 	 * @description - Set intial values of variables
@@ -21,17 +21,17 @@ poddsokApp.factory( 'Model', ( $q, Firebase ) => {
 	this.getPodcasts = () => {
 		var def = $q.defer();
 		if( podcasts.length === 0 ) {
-			Firebase.getPodcasts().then(function(data){
-				var titles = Object.keys(data);
-				var eps = Object.values(data);
-				titles.forEach(function( title, index ) {
+			Firebase.getPodcasts().then( ( data ) => {
+				var titles = Object.keys( data );
+				var eps = Object.values( data );
+				titles.forEach( ( title, index ) => {
 					if( eps[index].info !== undefined ) {
 						var info = eps[index].info;
 					}
 					podcasts.push( { 
-						title: title, 
-						name: info.name, 
-						info: info
+                        title: title,
+                        name:  info.name,
+                        info:  info
 					} );
 				})
 				def.resolve();

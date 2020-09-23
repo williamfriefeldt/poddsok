@@ -1,4 +1,4 @@
-poddsokApp.filter( 'segmentFilter', () => {
+poddsokApp.filter( 'segmentFilter', function() {
 
     /**
      * @description - Filter for text that match with words in episodes

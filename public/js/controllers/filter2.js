@@ -1,4 +1,4 @@
-poddsokApp.filter( 'minuteFilter', () => {
+poddsokApp.filter( 'minuteFilter', function() {
 
     /**
      * @description - Filter for text that match with words in episodes
@@ -22,7 +22,7 @@ poddsokApp.filter( 'minuteFilter', () => {
                     if( input[x] !== undefined ) {
                         if( re.test( input[x].text ) ) {
                             returnArray.push( input[x] );
-                            break;
+
                         }
                     }
                 }
@@ -31,4 +31,5 @@ poddsokApp.filter( 'minuteFilter', () => {
         if( searchText === '' ) return input;
         return returnArray;  
     }
+    
 });

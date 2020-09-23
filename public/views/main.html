@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
 	<!-- DeleteInfo popup -->
 	<div ng-include="'../views/deleteInfo.html'"></div>
 	<!-- AddInfo popup -->
@@ -7,17 +8,19 @@
 	<div ng-include="'../views/cookieInfo.html'"></div>
 	<!-- AppInfo popup -->
 	<div ng-include="'../views/appInfo.html'"></div>
-	<!-- Show AddInfo popup -->
+
 	<div class="header-1">
 		<div class="offset-2 offset-sm-7 offset-md-8 offset-lg-9">
 			<div class="row">
-				<a class="col-5 col-sm-7 menu" data-toggle="modal" data-target="#showAddInfo" ng-click="trackEvent( 'AddInfo-open' )">Lägg till</a>
-				<a href="/#!/om" class="col-4 col-sm-4 menu" ng-click="trackEvent( 'About' )">Om</a>
+				<!-- Show AddInfo popup -->
+				<a class="col-5 col-sm-7 menu" data-toggle="modal" data-target="#showAddInfo" ng-click="trackEvent( 'AddInfo-open' )"> Lägg till </a>
+				<a href="/#!/om" class="col-4 col-sm-4 menu" ng-click="trackEvent( 'About' )"> Om </a>
 			</div>
 		</div>
-		<h1 class="offset-1 col-10">poddsök.nu</h1>
-		<p class="center infoText" ng-if="infoText && !podcastInfo"> {{ infoText }}</p>
+		<h1 class="offset-1 col-10"> poddsök.nu </h1>
+		<p class="center infoText" ng-if="infoText && !podcastInfo"> {{ infoText }} </p>
 	</div>
+
 	<!-- Display podcasts -->
 	<div class="row pod-show-hide" ng-show="!podShow">
 		<div class="header-2 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
@@ -26,28 +29,34 @@
 
 		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" ng-show="!loading">
 			<div ng-repeat="pod in allPods | filter:searchpodd | orderBy: 'name' | filter:query as res">
-				<div class="pod click row" ng-click="showPod(); getEpisodes(pod)">
+				<div class="pod click row" ng-click="showPod(); getEpisodes( pod )">
 					<div class="col-2 col-lg-1">
-						<img ng-src="{{pod.info.image}}">
+						<img ng-src="{{ pod.info.image }}">
 					</div>
 					<div class="col-10 col-lg-11">
-						<h2 class="pod-name">{{pod.name}}</h2>
+						<h2 class="pod-name"> {{ pod.name }} </h2>
 					</div>
 				</div>
 			</div>
+
 			<!-- Pod doesnt exist -->
-			<div class="about" ng-show="!res.length">Podcasten finns ej... Du kan önska den <u><a href="mailto:kontakt@poddsok.nu?subject=Önska podcast" >här</a></u>!</div>
+			<div class="about" ng-show="!res.length">
+				Podcasten finns ej... Du kan önska den <u><a href="mailto:kontakt@poddsok.nu?subject=Önska podcast" >här</a></u>!
+			</div>
 		</div>
 	</div>
 
 	<!-- If enter podcast: display episodes -->
 	<div class="row pod-show-hide" ng-show="podShow">
+
 		<div class="offset-2 col-1 offset-lg-3 col-lg-1">
 			<i class="fas fa-arrow-alt-circle-left click back" ng-click="showPod()"></i>
 		</div>
+
 		<div class="header-2 col-6 col-lg-4">
 			<input ng-model="searchep" placeholder="Mening eller ord...">
 		</div>
+
 		<div class="col-1 col-lg-1">
 			<i ng-show="sortEps" class="fas fa-arrow-alt-circle-down sort click" ng-click="changeSort()"></i>
 			<i ng-show="!sortEps" class="fas fa-arrow-alt-circle-up sort click" ng-click="changeSort()"></i>
@@ -58,28 +67,30 @@
 			<div ng-repeat="episode in episodes | segmentFilter: searchep | orderBy: sortEps ? 'nr' : '-nr' | filter:query as resEp">
 				<div class="pod row">
 					<div class="col-2 col-lg-1">
-						<img ng-src="{{pod.info.image}}">
+						<img ng-src="{{ pod.info.image }}">
 					</div>
+
 					<div class="col-10 col-lg-11">
 						<!-- Show/hide info in episode -->
-						<div ng-if="episode.minutes.length>1 && episode.epTxt && !searchep" ng-click="showMinText(episode)" ng-show="!searchep">
+						<div ng-if="episode.minutes.length>1 && episode.epTxt && !searchep" ng-click="showMinText( episode )" ng-show="!searchep">
 							<i ng-show="!episode.showMin" class="fa fa-plus-circle eptext-show delete-icon"></i>
 							<i ng-show="episode.showMin" class="fa fa-minus-circle eptext-show delete-icon"></i>
 						</div>
-						<h2 class="pod-name" ng-class="{'pod-title-up':searchep}"><a class="play" href="{{episode.link}}" ng-show="searchep || episode.showMin"><i class="fa fa-play-circle"></i></a>{{episode.nr}}. {{episode.name}}</h2>
+						<h2 class="pod-name" ng-class="{ 'pod-title-up': searchep }"><a class="play" href="{{ episode.link }}" ng-show="searchep || episode.showMin"><i class="fa fa-play-circle"></i></a>{{ episode.nr }}. {{ episode.name }}</h2>
 						<!-- Display info in each episode -->
-						<div ng-show="searchep || episode.showMin" ng-repeat="minute in filtered = (episode.minutes | minuteFilter:searchep | orderBy:'nr')" ng-if="minute.text != ''" class="row pod-show-hide">
-							<p class='col-10 col-lg-11 inline'>{{minute.nr}} minuter: "<span class='inline' ng-bind-html="boldSearch(minute.text,searchep)"></span>"
+						<div ng-show="searchep || episode.showMin" ng-repeat="minute in filtered = ( episode.minutes | minuteFilter:searchep | orderBy:'nr' )" ng-if="minute.text != ''" class="row pod-show-hide">
+							<p class='col-10 col-lg-11 inline'>{{ minute.nr }} minuter: "<span class='inline' ng-bind-html="boldSearch( minute.text, searchep )"></span>"
 							</p>
 							<!-- Delete episode info -->
-							<i class="col-2 col-lg-1 delete-icon fas fa-exclamation-circle" data-toggle="modal" data-target="#showDeleteInfo" ng-click="setDeleteInfo(minute,episode); trackEvent( 'DeleteInfo-open' )"></i>
+							<i class="col-2 col-lg-1 delete-icon fas fa-exclamation-circle" data-toggle="modal" data-target="#showDeleteInfo" ng-click="setDeleteInfo( minute,episode ); trackEvent( 'DeleteInfo-open' )"></i>
 						</div>
 					</div>
 				</div>
 			</div> 
+
 			<!-- If search word doesnt exist -->
 			<div class="about center" ng-show="resEp.length<1">
-					Texten finns inte... Vet du var det nämns? Lägg till <u><a data-toggle="modal" data-target="#showAddInfo">här</a></u>!
+				Texten finns inte... Vet du var det nämns? Lägg till <u><a data-toggle="modal" data-target="#showAddInfo">här</a></u>!
 			</div>
 		</div>
 		

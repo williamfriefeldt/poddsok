@@ -1,4 +1,4 @@
-poddsokApp.factory( 'Firebase', ( $q ) => {
+poddsokApp.factory( 'Firebase', function( $q ) {
 
 	/**
 	 * @description - Firebase setup 

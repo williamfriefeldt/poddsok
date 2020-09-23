@@ -1,4 +1,4 @@
-poddsokApp.controller( 'AddInfoCtrl', ( $scope, Model ) => {
+poddsokApp.controller( 'AddInfoCtrl', function( $scope, Model ) {
 
 	/**
 	 * @description - Set intial values of variables
