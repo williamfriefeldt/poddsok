@@ -109,7 +109,11 @@ poddsokApp.controller( 'AddInfoCtrl', function( $scope, Model ) {
 			episodes = Model.getEps();
 			for( var i=0; i < episodes.length; i++ ) {
 				if( episodes[i].minutes !== undefined) {
-					episodes[i].text = episodes[i].nr + '.' + episodes[i].name;
+					var epName = episodes[i].name;
+					if( epName[0] === ' ' ) {
+						epName = epName.replace( ' ', '' );
+					}
+					episodes[i].text = episodes[i].nr + '. ' + epName;
 				}
 			}
 			$scope.input.ep = true;
