@@ -44,6 +44,12 @@ poddsokApp.controller( 'MainCtrl', function( $location, $window, $scope, $cookie
 		}
 		$scope.searchpodd = '';
 		$scope.podShow = !$scope.podShow;
+		if( $scope.podShow ) {
+			setTimeout( () => {
+				var podsDiv = document.getElementById( 'eps-div' );
+				podsDiv.scrollTop = 0;
+			}, 500 );
+		}
 	};
 
 	/**

@@ -62,7 +62,7 @@
 			<i ng-show="!sortEps" class="fas fa-arrow-alt-circle-up sort click" ng-click="changeSort()"></i>
 		</div>
 
-		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" ng-show="!loading">
+		<div class="scroll col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" ng-show="!loading" id="eps-div">
 			<!-- Loop through episodes -->
 			<div ng-repeat="episode in episodes | segmentFilter: searchep | orderBy: sortEps ? 'nr' : '-nr' | filter:query as resEp">
 				<div class="pod row">
@@ -82,7 +82,7 @@
 							<p class='col-10 col-lg-11 inline'>{{ minute.nr }} minuter: "<span class='inline' ng-bind-html="boldSearch( minute.text, searchep )"></span>"
 							</p>
 							<!-- Delete episode info -->
-							<i class="col-2 col-lg-1 delete-icon fas fa-exclamation-circle" data-toggle="modal" data-target="#showDeleteInfo" ng-click="setDeleteInfo( minute,episode ); trackEvent( 'DeleteInfo-open' )"></i>
+							<i class="col-2 col-lg-1 delete-icon fas fa-exclamation-circle" data-toggle="modal" data-target="#showDeleteInfo" ng-click="setDeleteInfo( minute, episode ); trackEvent( 'DeleteInfo-open' )"></i>
 						</div>
 					</div>
 				</div>
