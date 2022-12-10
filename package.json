@@ -10,7 +10,7 @@
   "author": "William Friefeldt",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "node": "^14.3.0",
     "npm": "^6.13.4"
   }
